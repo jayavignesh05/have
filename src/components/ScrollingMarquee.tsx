@@ -11,7 +11,7 @@ export default function ScrollingMarquee() {
     ];
 
     return (
-        <div className="bg-black py-4 overflow-hidden border-y border-white/10">
+        <div className="bg-white/50 py-4 overflow-hidden border-y border-white/30 ">
             <div className="flex whitespace-nowrap">
                 <motion.div
                     className="flex gap-20 items-center px-10"
@@ -25,7 +25,7 @@ export default function ScrollingMarquee() {
                     {Array(10).fill(0).map((_, i) => (
                         <div key={i} className="flex gap-20 items-center">
                             {items.map((item, index) => (
-                                <span key={index} className="text-white text-xs font-bold tracking-[0.2em] uppercase">
+                                <span key={index} className="text-black text-xs font-bold tracking-[0.2em] uppercase">
                                     {item}
                                 </span>
                             ))}

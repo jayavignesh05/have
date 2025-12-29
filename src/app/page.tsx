@@ -1,3 +1,8 @@
+"use client";
+
+import { useScroll, useTransform, motion } from "framer-motion";
+import { useRef } from "react";
+
 import ProductGrid from "@/components/ProductGrid";
 import BentoGrid from "@/components/BentoGrid";
 import FeaturedSplit from "@/components/FeaturedSplit";
@@ -13,32 +18,60 @@ import EditorialSection from "@/components/EditorialSection";
 import BlogSection from "@/components/BlogSection";
 import StorySection from "@/components/StorySection";
 import CollectionSplit from "@/components/CollectionSplit";
+import Navbar from "@/components/Navbar";
 
 import { bestSellers, newIn } from "@/data/products";
 
 export default function Home() {
-  return (
-    <main className="min-h-screen bg-white text-black font-sans">
+  // 1. Scroll Tracking logic
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
 
-      {/* 1. STICKY HERO WRAPPER (Z-0) */}
-      {/* Idhu dhaan 'Sticky' logic. Hero & Marquee inga irukanum */}
-      <div className="sticky top-0 z-0 h-screen w-full flex flex-col overflow-hidden">
-        <ScrollingMarquee />
-        <div className="flex-1 relative">
-          <ModernFashionHeroSlider />
-        </div>
+  // 2. Parallax Animations (Magic happens here!)
+  // y: Background moves down slightly (0% -> 20%) creates depth
+  // scale: Background shrinks slightly (1 -> 0.95)
+  // opacity: Background fades out slightly (1 -> 0.5) to focus on content
+  const y = useTransform(scrollYProgress, [0, 1], ["-0%", "-90%"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.5]);
+
+  return (
+    <main ref={containerRef} className="min-h-screen bg-white text-black font-sans relative">
+
+      {/* Navbar - Fixed at top */}
+      <Navbar />
+
+      {/* -------------------------------------------------- */}
+      {/* 1. STICKY PARALLAX HERO (Z-0) */}
+      {/* -------------------------------------------------- */}
+      <div className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-black">
+        <motion.div
+          style={{ y, scale, opacity }}
+          className="w-full h-full flex flex-col origin-top"
+        >
+          <ScrollingMarquee />
+          <div className="flex-1 relative">
+            <ModernFashionHeroSlider />
+          </div>
+        </motion.div>
       </div>
 
-      {/* 2. SCROLLABLE OVERLAY CONTENT (Z-10) */}
-      {/* Idhu Hero mela slide aagi varum. 'bg-white' mukkiyam! */}
-      <div className="relative z-10 bg-white shadow-[0_-20px_60px_rgba(0,0,0,0.3)] rounded-t-3xl">
+      {/* -------------------------------------------------- */}
+      {/* 2. SCROLLABLE CONTENT (Z-10) */}
+      {/* -------------------------------------------------- */}
+      <div className="relative z-10 bg-white shadow-[0_-25px_50px_-12px_rgba(0,0,0,0.25)] rounded-t-[2.5rem] mt-[-2vh]">
 
+        {/* Bento Grid */}
         <Reveal delay={0.1}>
           <BentoGrid />
         </Reveal>
 
-        <div className="relative z-10 bg-white">
-          {/* 1. Best Sellers */}
+        {/* Products & Other Sections */}
+        <div className="bg-white">
+
           <Reveal delay={0.1}>
             <div className="max-w-screen-2xl mx-auto px-6 py-24">
               <div className="flex justify-between items-end mb-16">
@@ -49,12 +82,10 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {/* 2. Editorial Section */}
           <Reveal delay={0.1}>
             <EditorialSection />
           </Reveal>
 
-          {/* 3. New In */}
           <Reveal delay={0.1}>
             <div className="max-w-screen-2xl mx-auto px-6 py-24 bg-neutral-50/50">
               <div className="flex justify-between items-end mb-16">
@@ -65,37 +96,30 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {/* 4. Collection Split */}
           <Reveal delay={0.1}>
             <CollectionSplit />
           </Reveal>
 
-          {/* 5. Elevate Your Style */}
           <Reveal delay={0.1}>
             <FeaturedSplit />
           </Reveal>
 
-          {/* 6. Testimonials */}
           <Reveal delay={0.1}>
             <Testimonials />
           </Reveal>
 
-          {/* 7. Our Story Section */}
           <Reveal delay={0.1}>
             <StorySection />
           </Reveal>
 
-          {/* 8. Value Propositions */}
           <Reveal delay={0.1}>
             <ValueProps />
           </Reveal>
 
-          {/* 9. Blog Section */}
           <Reveal delay={0.1}>
             <BlogSection />
           </Reveal>
 
-          {/* 10. Instagram Feed */}
           <Reveal delay={0.1}>
             <div className="py-24">
               <InstagramFeed />
