@@ -19,80 +19,93 @@ import { bestSellers, newIn } from "@/data/products";
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-black font-sans">
-      <ScrollingMarquee />
-      <ModernFashionHeroSlider />
-      <Reveal delay={0.1}>
-        <BentoGrid />
-      </Reveal>
-      <div className="relative z-10 bg-white">
-        {/* 1. Best Sellers */}
-        <Reveal delay={0.1}>
-          <div className="max-w-screen-2xl mx-auto px-6 py-24">
-            <div className="flex justify-between items-end mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Best Sellers</h2>
-              <a href="/shop" className="text-xs font-bold uppercase tracking-[0.3em] border-b border-black pb-1 hover:opacity-60 transition-opacity">View all</a>
-            </div>
-            <ProductGrid title="" products={bestSellers.slice(0, 4)} />
-          </div>
-        </Reveal>
 
-        {/* 2. Editorial Section */}
-        <Reveal delay={0.1}>
-          <EditorialSection />
-        </Reveal>
-
-        {/* 3. New In */}
-        <Reveal delay={0.1}>
-          <div className="max-w-screen-2xl mx-auto px-6 py-24 bg-neutral-50/50">
-            <div className="flex justify-between items-end mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">New In</h2>
-              <a href="/shop" className="text-xs font-bold uppercase tracking-[0.3em] border-b border-black pb-1 hover:opacity-60 transition-opacity">View all</a>
-            </div>
-            <ProductGrid title="" products={newIn.slice(0, 4)} isNewIn />
-          </div>
-        </Reveal>
-
-        {/* 4. Collection Split */}
-        <Reveal delay={0.1}>
-          <CollectionSplit />
-        </Reveal>
-
-        {/* 5. Elevate Your Style (Feature Split) */}
-        <Reveal delay={0.1}>
-          <FeaturedSplit />
-        </Reveal>
-
-        {/* 6. Testimonials */}
-        <Reveal delay={0.1}>
-          <Testimonials />
-        </Reveal>
-
-        {/* 7. Our Story Section */}
-        <Reveal delay={0.1}>
-          <StorySection />
-        </Reveal>
-
-        {/* 8. Value Propositions */}
-        <Reveal delay={0.1}>
-          <ValueProps />
-        </Reveal>
-
-        {/* 9. Blog Section */}
-        <Reveal delay={0.1}>
-          <BlogSection />
-        </Reveal>
-
-
-
-        {/* 11. Instagram / Social Proof */}
-        <Reveal delay={0.1}>
-          <div className="py-24">
-            <InstagramFeed />
-          </div>
-        </Reveal>
-
-        <Footer />
+      {/* 1. STICKY HERO WRAPPER (Z-0) */}
+      {/* Idhu dhaan 'Sticky' logic. Hero & Marquee inga irukanum */}
+      <div className="sticky top-0 z-0 h-screen w-full flex flex-col overflow-hidden">
+        <ScrollingMarquee />
+        <div className="flex-1 relative">
+          <ModernFashionHeroSlider />
+        </div>
       </div>
+
+      {/* 2. SCROLLABLE OVERLAY CONTENT (Z-10) */}
+      {/* Idhu Hero mela slide aagi varum. 'bg-white' mukkiyam! */}
+      <div className="relative z-10 bg-white shadow-[0_-20px_60px_rgba(0,0,0,0.3)] rounded-t-3xl">
+
+        <Reveal delay={0.1}>
+          <BentoGrid />
+        </Reveal>
+
+        <div className="relative z-10 bg-white">
+          {/* 1. Best Sellers */}
+          <Reveal delay={0.1}>
+            <div className="max-w-screen-2xl mx-auto px-6 py-24">
+              <div className="flex justify-between items-end mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Best Sellers</h2>
+                <a href="/shop" className="text-xs font-bold uppercase tracking-[0.3em] border-b border-black pb-1 hover:opacity-60 transition-opacity">View all</a>
+              </div>
+              <ProductGrid title="" products={bestSellers.slice(0, 4)} />
+            </div>
+          </Reveal>
+
+          {/* 2. Editorial Section */}
+          <Reveal delay={0.1}>
+            <EditorialSection />
+          </Reveal>
+
+          {/* 3. New In */}
+          <Reveal delay={0.1}>
+            <div className="max-w-screen-2xl mx-auto px-6 py-24 bg-neutral-50/50">
+              <div className="flex justify-between items-end mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight">New In</h2>
+                <a href="/shop" className="text-xs font-bold uppercase tracking-[0.3em] border-b border-black pb-1 hover:opacity-60 transition-opacity">View all</a>
+              </div>
+              <ProductGrid title="" products={newIn.slice(0, 4)} isNewIn />
+            </div>
+          </Reveal>
+
+          {/* 4. Collection Split */}
+          <Reveal delay={0.1}>
+            <CollectionSplit />
+          </Reveal>
+
+          {/* 5. Elevate Your Style */}
+          <Reveal delay={0.1}>
+            <FeaturedSplit />
+          </Reveal>
+
+          {/* 6. Testimonials */}
+          <Reveal delay={0.1}>
+            <Testimonials />
+          </Reveal>
+
+          {/* 7. Our Story Section */}
+          <Reveal delay={0.1}>
+            <StorySection />
+          </Reveal>
+
+          {/* 8. Value Propositions */}
+          <Reveal delay={0.1}>
+            <ValueProps />
+          </Reveal>
+
+          {/* 9. Blog Section */}
+          <Reveal delay={0.1}>
+            <BlogSection />
+          </Reveal>
+
+          {/* 10. Instagram Feed */}
+          <Reveal delay={0.1}>
+            <div className="py-24">
+              <InstagramFeed />
+            </div>
+          </Reveal>
+
+          <Footer />
+        </div>
+      </div>
+
       <NewsletterModal />
     </main>
   );
