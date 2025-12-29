@@ -5,7 +5,7 @@ export default function InstagramFeed() {
         "https://images.unsplash.com/photo-1550246140-29f40b909e5a?q=80&w=800&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1542596594-649edbc13630?q=80&w=800&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1534030347209-7147fd2e7506?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1520975661595-6453be3f7070?q=80&w=800&auto=format&fit=crop"
     ];
 

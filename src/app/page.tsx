@@ -21,7 +21,9 @@ export default function Home() {
     <main className="min-h-screen bg-white text-black font-sans">
       <ScrollingMarquee />
       <ModernFashionHeroSlider />
-
+      <Reveal delay={0.1}>
+        <BentoGrid />
+      </Reveal>
       <div className="relative z-10 bg-white">
         {/* 1. Best Sellers */}
         <Reveal delay={0.1}>
@@ -80,10 +82,7 @@ export default function Home() {
           <BlogSection />
         </Reveal>
 
-        {/* 10. Bento Categories */}
-        <Reveal delay={0.1}>
-          <BentoGrid />
-        </Reveal>
+
 
         {/* 11. Instagram / Social Proof */}
         <Reveal delay={0.1}>

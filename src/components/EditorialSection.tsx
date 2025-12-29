@@ -7,7 +7,7 @@ export default function EditorialSection() {
             <div className="grid h-screen w-full grid-cols-1 md:grid-cols-12 md:h-[80vh]">
                 <div className="relative bg-gray-200 md:col-span-8">
                     <Image
-                        src="https://placehold.co/1200x1600/e5e7eb/9ca3af?text=Motion+Blur+Editorial"
+                        src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200&auto=format&fit=crop"
                         alt="Motion Blur Editorial"
                         fill
                         className="object-cover"
@@ -27,7 +27,7 @@ export default function EditorialSection() {
             {/* Section 2: Side Profile - Full Width */}
             <div className="relative h-[60vh] w-full bg-gray-800 md:h-[80vh]">
                 <Image
-                    src="https://placehold.co/1920x1080/1f2937/4b5563?text=Moody+Side+Profile"
+                    src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1920&auto=format&fit=crop"
                     alt="Moody Side Profile"
                     fill
                     className="object-cover opacity-70"

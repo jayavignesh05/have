@@ -53,47 +53,47 @@ export default function Navbar() {
             <nav className="bg-white/40 dark:bg-black/40 backdrop-blur-md border-b border-white/20 dark:border-white/5 transition-all duration-300 relative">
                 <div className="max-w-screen-2xl mx-auto px-6 py-4 md:py-5 flex justify-between items-center relative z-20">
 
-                    {/* Logo */}
+                    {/* Logo - Left Aligned */}
                     <div className="flex-shrink-0">
-                        <Link href="/" className="font-sans text-2xl font-semibold tracking-wide uppercase text-gray-900 dark:text-gray-100">
-                            HAVE
+                        <Link href="/" className="font-sans text-2xl font-bold tracking-[0.2em] uppercase text-gray-900 dark:text-gray-100">
+                            VEON
                         </Link>
                     </div>
 
-                    {/* Combined Menu (Links + Actions) */}
-                    <div className="flex items-center gap-6 md:gap-8 text-sm font-medium tracking-wide text-gray-800 dark:text-gray-200">
+                    {/* Combined Menu (Links + Actions) - Right Aligned */}
+                    <div className="flex items-center gap-8 md:gap-12 text-sm font-medium tracking-wide text-gray-800 dark:text-gray-200">
 
-                        {/* Navigation Links */}
-                        <div className="hidden md:flex gap-8">
+                        {/* Navigation Links - Center-Right */}
+                        <div className="hidden md:flex gap-10">
                             <div
                                 onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}
-                                className="relative py-2" // Added padding for better hover target
+                                className="relative py-2"
                             >
                                 <Link
                                     href="/shop"
-                                    className={`transition-colors ${isShopHovered ? "text-purple-400" : "hover:text-black dark:hover:text-white"}`}
+                                    className={`transition-colors hover:text-black dark:hover:text-white uppercase tracking-widest text-[11px] font-bold ${isShopHovered ? "opacity-100" : "opacity-70"}`}
                                 >
                                     Shop
                                 </Link>
                             </div>
-                            <Link href="#" className="hover:text-black dark:hover:text-white transition-colors py-2">About</Link>
-                            <Link href="#" className="hover:text-black dark:hover:text-white transition-colors py-2">Blogs</Link>
-                            <Link href="#" className="hover:text-black dark:hover:text-white transition-colors py-2">Contact</Link>
+                            <Link href="/about" className="hover:text-black dark:hover:text-white transition-colors py-2 uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">About</Link>
+                            <Link href="/blogs" className="hover:text-black dark:hover:text-white transition-colors py-2 uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">Blogs</Link>
+                            <Link href="/contact" className="hover:text-black dark:hover:text-white transition-colors py-2 uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">Contact</Link>
                         </div>
 
-                        {/* Actions */}
+                        {/* Actions - Far Right */}
                         <div className="flex items-center gap-6 md:gap-8">
-                            <button onClick={toggleWishlistDrawer} className="hover:text-black dark:hover:text-white transition-colors">
+                            <button onClick={toggleWishlistDrawer} className="hover:text-black dark:hover:text-white transition-colors uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">
                                 Favorites
                             </button>
 
-                            <button onClick={toggleSearch} className="hover:text-black dark:hover:text-white transition-colors">
+                            <button onClick={toggleSearch} className="hover:text-black dark:hover:text-white transition-colors uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">
                                 Search
                             </button>
 
-                            <button onClick={toggleCart} className="hover:text-black dark:hover:text-white transition-colors flex items-center gap-1">
-                                Bag <span className="opacity-70 font-normal">({cart.length})</span>
+                            <button onClick={toggleCart} className="hover:text-black dark:hover:text-white transition-colors flex items-center gap-1 uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">
+                                Bag <span className="opacity-50 font-normal">({cart.length})</span>
                             </button>
                         </div>
                     </div>

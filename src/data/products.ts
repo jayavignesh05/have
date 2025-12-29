@@ -122,7 +122,7 @@ export const products: Product[] = [
         id: 17,
         name: "Tactical Tech Cargo Pants",
         price: "$210.00 USD",
-        image: "https://images.unsplash.com/photo-1517445312882-5667b68c2c10?q=80&w=2073&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=2073&auto=format&fit=crop",
         category: "Bottoms",
         badge: "New"
     },
@@ -130,7 +130,7 @@ export const products: Product[] = [
         id: 18,
         name: "Utility Relaxed Cargo",
         price: "$190.00 USD",
-        image: "https://images.unsplash.com/photo-1552160753-117159d2e13a?q=80&w=1844&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=1844&auto=format&fit=crop",
         category: "Bottoms"
     },
     {
