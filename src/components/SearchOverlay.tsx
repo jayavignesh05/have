@@ -118,7 +118,7 @@ export default function SearchOverlay() {
                                 </div>
                             ) : (
                                 <div className="text-center py-12">
-                                    <p className="text-xl text-white/40">No results found for <span className="text-white">"{query}"</span></p>
+                                    <p className="text-xl text-white/40">No results found for <span className="text-white">&quot;{query}&quot;</span></p>
                                     <p className="text-sm text-white/20 mt-2">Try checking for typos or using broader terms.</p>
                                 </div>
                             )}

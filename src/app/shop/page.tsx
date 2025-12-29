@@ -8,7 +8,7 @@ import ProductCard from "@/components/ProductCard";
 
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState } from "react";
 
 function ShopContent() {
     const searchParams = useSearchParams();
@@ -23,7 +23,7 @@ function ShopContent() {
     const categories = Array.from(new Set(products.map(p => p.category).filter(Boolean)));
 
     // internal filtering
-    let productList = category
+    const productList = category
         ? products.filter((p) => (p.category || "").toLowerCase() === category.toLowerCase())
         : [...products];
 

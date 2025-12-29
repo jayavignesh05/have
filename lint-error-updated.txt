@@ -1,0 +1,46 @@
+﻿
+> have@0.1.0 lint
+> eslint
+
+
+C:\mine\have\src\components\BlogSection.tsx
+  14:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  29:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  43:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  57:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\mine\have\src\components\CartDrawer.tsx
+  63:45  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\mine\have\src\components\CollectionSplit.tsx
+  14:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  25:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\mine\have\src\components\ProductGrid.tsx
+   3:8   warning  'Link' is defined but never used                     @typescript-eslint/no-unused-vars
+  22:39  warning  'title' is defined but never used                    @typescript-eslint/no-unused-vars
+  22:56  warning  'viewAllLink' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  22:75  warning  'isNewIn' is assigned a value but never used         @typescript-eslint/no-unused-vars
+  23:13  warning  'addToCart' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  23:24  warning  'toggleWishlist' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  23:40  warning  'wishlist' is assigned a value but never used        @typescript-eslint/no-unused-vars
+
+C:\mine\have\src\components\Reveal.tsx
+  4:43  warning  'Variant' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\mine\have\src\components\SearchOverlay.tsx
+  107:57  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\mine\have\src\components\StorySection.tsx
+  4:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\mine\have\src\components\WishlistDrawer.tsx
+   9:61  warning  'removeFromCart' is assigned a value but never used                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  52:58  warning  'index' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  62:45  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\mine\have\src\context\ShopContext.tsx
+  3:54  warning  'ReactNode' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 21 problems (0 errors, 21 warnings)
+

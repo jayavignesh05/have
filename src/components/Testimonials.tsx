@@ -1,31 +1,63 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+
+const testimonials = [
+    {
+        quote: "The T-shirts are next-level comfort! They are incredibly soft, breathable, and hold their shape even after multiple washes.",
+        author: "Lily Thompson",
+        role: "Verified Buyer",
+        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop",
+    },
+    {
+        quote: "My wardrobe has completely transformed. I can confidently say these are the best basics I've ever worn.",
+        author: "Daniel Wong",
+        role: "Verified Buyer",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop",
+    },
+    {
+        quote: "I love how they fit perfectly without feeling too tight or too loose. It's rare to find such a great balance of style and comfort.",
+        author: "Emma Lewis",
+        role: "Verified Buyer",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop",
+    },
+    {
+        quote: "I'm obsessed with the cargo pants! The fit is spot-on, and the quality is unmatched. I've already ordered a second pair.",
+        author: "Noah Richardson",
+        role: "Verified Buyer",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop",
+    },
+];
+
 export default function Testimonials() {
     return (
-        <section className="bg-card-light dark:bg-card-dark py-20 border-y border-gray-100 dark:border-gray-800">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="text-3xl font-serif font-bold text-gray-900 dark:text-white mb-2">What Our Customers Say</h2>
-                <p className="text-sm text-gray-500 mb-16">Real experiences, Authentic style. See why everyone loves HAVE.</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="bg-secondary-light dark:bg-secondary-dark p-8 rounded-lg relative">
-                        <p className="text-sm text-gray-600 dark:text-gray-300 italic leading-relaxed mb-6">"The quality and fit are absolutely perfect! From the moment I put it on, I could feel the attention to detail. The fabric is soft yet durable, making it perfect for everyday wear. Definitely my new go-to brand!"</p>
-                        <div className="flex flex-col items-center">
-                            <img alt="James Carter" className="w-12 h-12 rounded-full object-cover mb-2 border-2 border-white dark:border-gray-700" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop" />
-                            <span className="text-sm font-semibold text-gray-900 dark:text-white">— James Carter</span>
-                        </div>
-                    </div>
-                    <div className="bg-secondary-light dark:bg-secondary-dark p-8 rounded-lg relative">
-                        <p className="text-sm text-gray-600 dark:text-gray-300 italic leading-relaxed mb-6">"HAVE's designs are effortlessly chic and modern. I recently purchased a polo and a pair of cargo pants, and both exceeded my expectations. The fit is flattering, and the materials feel premium. I get compliments every time I wear them!"</p>
-                        <div className="flex flex-col items-center">
-                            <img alt="Michael Chen" className="w-12 h-12 rounded-full object-cover mb-2 border-2 border-white dark:border-gray-700" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=150&auto=format&fit=crop" />
-                            <span className="text-sm font-semibold text-gray-900 dark:text-white">— Michael Chen</span>
-                        </div>
-                    </div>
-                    <div className="bg-secondary-light dark:bg-secondary-dark p-8 rounded-lg relative">
-                        <p className="text-sm text-gray-600 dark:text-gray-300 italic leading-relaxed mb-6">"From the fabric to the fit, every piece feels premium. You can tell that HAVE puts a lot of effort into making sure their designs are both fashionable and functional. I love the sophisticated yet relaxed aesthetic—it's exactly what I've been looking for in a brand!"</p>
-                        <div className="flex flex-col items-center">
-                            <img alt="David Wright" className="w-12 h-12 rounded-full object-cover mb-2 border-2 border-white dark:border-gray-700" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" />
-                            <span className="text-sm font-semibold text-gray-900 dark:text-white">— David Wright</span>
-                        </div>
-                    </div>
+        <section className="bg-neutral-50 py-24 px-6 overflow-hidden">
+            <div className="max-w-screen-2xl mx-auto">
+                <div className="text-center mb-16">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 block">Feedback</span>
+                    <h2 className="text-4xl font-bold tracking-tight text-black">Trusted by Many</h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {testimonials.map((t, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                            className="bg-white p-12 flex flex-col items-center text-center rounded-sm border border-neutral-100"
+                        >
+                            <div className="relative w-16 h-16 rounded-full overflow-hidden mb-8 grayscale">
+                                <Image src={t.avatar} alt={t.author} fill className="object-cover" />
+                            </div>
+                            <p className="text-xl md:text-2xl font-medium text-black leading-relaxed">&quot;{t.quote}&quot;</p>
+                            <div>
+                                <h4 className="font-bold text-sm tracking-tight">{t.author}</h4>
+                                <p className="text-[10px] text-neutral-400 uppercase tracking-widest mt-1">{t.role}</p>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </section>

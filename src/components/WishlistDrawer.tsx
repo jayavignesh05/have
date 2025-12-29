@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 export default function WishlistDrawer() {
-    const { wishlist, isWishlistOpen, toggleWishlistDrawer, removeFromCart, addToCart, toggleWishlist } = useShop();
+    const { wishlist, isWishlistOpen, toggleWishlistDrawer, addToCart, toggleWishlist } = useShop();
 
     // Get product details for wishlist items
     const wishlistItems = products.filter(p => wishlist.includes(p.id));
@@ -49,7 +49,7 @@ export default function WishlistDrawer() {
                                     <button onClick={toggleWishlistDrawer} className="text-purple-900 dark:text-white underline underline-offset-4">Browse Collection</button>
                                 </div>
                             ) : (
-                                wishlistItems.map((item, index) => (
+                                wishlistItems.map((item) => (
                                     <motion.div
                                         layout
                                         key={item.id}

@@ -1,0 +1,70 @@
+﻿
+> have@0.1.0 lint
+> eslint
+
+
+C:\mine\have\src\app\page.tsx
+  3:8  warning  'PromoBanner' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\mine\have\src\app\product\[id]\page.tsx
+  3:15  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\mine\have\src\app\shop\page.tsx
+  11:30  warning  'useEffect' is defined but never used                   @typescript-eslint/no-unused-vars
+  26:9   error    'productList' is never reassigned. Use 'const' instead  prefer-const
+
+C:\mine\have\src\components\BlogSection.tsx
+  14:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  29:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  43:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  57:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\mine\have\src\components\CartDrawer.tsx
+  63:45  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\mine\have\src\components\CollectionSplit.tsx
+  14:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  25:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\mine\have\src\components\FeaturedSplit.tsx
+  40:101  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\mine\have\src\components\FeaturesSection.tsx
+  26:74  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  26:97  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\mine\have\src\components\ProductGrid.tsx
+   3:8   warning  'Link' is defined but never used                     @typescript-eslint/no-unused-vars
+  22:39  warning  'title' is defined but never used                    @typescript-eslint/no-unused-vars
+  22:56  warning  'viewAllLink' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  22:75  warning  'isNewIn' is assigned a value but never used         @typescript-eslint/no-unused-vars
+  23:13  warning  'addToCart' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  23:24  warning  'toggleWishlist' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  23:40  warning  'wishlist' is assigned a value but never used        @typescript-eslint/no-unused-vars
+
+C:\mine\have\src\components\Reveal.tsx
+  4:43  warning  'Variant' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\mine\have\src\components\SearchOverlay.tsx
+  107:57   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  121:124  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  121:132  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+
+C:\mine\have\src\components\StorySection.tsx
+  4:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\mine\have\src\components\Testimonials.tsx
+  54:103  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  54:113  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\mine\have\src\components\WishlistDrawer.tsx
+   9:61  warning  'removeFromCart' is assigned a value but never used                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  52:58  warning  'index' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  62:45  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\mine\have\src\context\ShopContext.tsx
+  3:54  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 32 problems (8 errors, 24 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+

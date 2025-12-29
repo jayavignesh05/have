@@ -2,15 +2,17 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const categories = [
     {
         id: 1,
         title: "New Arrivals",
-        subtitle: "Latest Men's Trends.",
+        subtitle: "Latest Minimalist Trends.",
         image: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=800&q=80",
         href: "/shop?category=new",
         className: "md:col-span-2 md:row-span-2",
+        span: "01"
     },
     {
         id: 2,
@@ -19,6 +21,7 @@ const categories = [
         image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=600&q=80",
         href: "/shop?category=accessories",
         className: "md:col-span-1 md:row-span-1",
+        span: "02"
     },
     {
         id: 3,
@@ -27,6 +30,7 @@ const categories = [
         image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80",
         href: "/shop?category=outerwear",
         className: "md:col-span-1 md:row-span-1",
+        span: "03"
     },
     {
         id: 4,
@@ -35,18 +39,23 @@ const categories = [
         image: "https://images.unsplash.com/photo-1527011046414-4781f1f94f8c?auto=format&fit=crop&w=600&q=80",
         href: "/shop?category=footwear",
         className: "md:col-span-2 md:row-span-1",
+        span: "04"
     },
 ];
 
 export default function BentoGrid() {
     return (
-        <section className="max-w-7xl mx-auto px-6 py-20">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[200px]">
+        <section className="max-w-screen-2xl mx-auto px-6 py-24">
+            <div className="flex justify-between items-end mb-16">
+                <h2 className="text-4xl font-bold tracking-tight">Shop by Category</h2>
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400">Curated Collections</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[240px]">
                 {categories.map((item, index) => (
                     <Link
                         key={item.id}
                         href={item.href}
-                        className={`relative group overflow-hidden rounded-sm bg-purple-100 dark:bg-purple-900/20 ${item.className}`}
+                        className={`relative group overflow-hidden bg-neutral-100 ${item.className}`}
                     >
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -55,16 +64,23 @@ export default function BentoGrid() {
                             viewport={{ once: true }}
                             className="w-full h-full relative"
                         >
-                            <img
+                            <Image
                                 src={item.image}
                                 alt={item.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-1000"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent p-6 flex flex-col justify-end">
-                                <h3 className="text-white text-xl font-serif font-bold">{item.title}</h3>
-                                <p className="text-purple-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                                    {item.subtitle}
-                                </p>
+                            {/* Overlay */}
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+
+                            <div className="absolute inset-0 p-8 flex flex-col justify-between">
+                                <span className="text-white text-[10px] font-bold tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">{item.span}</span>
+                                <div>
+                                    <h3 className="text-white text-2xl font-bold tracking-tight mb-2">{item.title}</h3>
+                                    <p className="text-white/70 text-xs font-medium tracking-wide opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 duration-300">
+                                        {item.subtitle}
+                                    </p>
+                                </div>
                             </div>
                         </motion.div>
                     </Link>

@@ -23,7 +23,7 @@ export default function FeaturesSection() {
                     <div className="p-6 bg-secondary-light dark:bg-secondary-dark rounded-lg">
                         <span className="material-icons text-4xl text-gray-700 dark:text-gray-300 mb-4">sync</span>
                         <h3 className="font-bold text-gray-900 dark:text-white mb-2">10-Days Return Policy</h3>
-                        <p className="text-xs text-gray-500">We think you'll love it. If you don't, let us know!</p>
+                        <p className="text-xs text-gray-500">We think you&apos;ll love it. If you don&apos;t, let us know!</p>
                     </div>
                 </div>
             </div>

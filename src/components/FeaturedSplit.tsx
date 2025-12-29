@@ -1,51 +1,89 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Check } from "lucide-react";
+import Image from "next/image";
 
 export default function FeaturedSplit() {
     return (
-        <section className="max-w-7xl mx-auto px-6 py-20 bg-gray-50 dark:bg-[#1A1A1A]/30 rounded-3xl my-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <section className="bg-neutral-50 px-6 py-24 md:py-32 overflow-hidden">
+            <div className="max-w-screen-2xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 items-center">
 
-                {/* Left: Image */}
-                <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    className="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl skew-y-3 transform md:hover:skew-y-0 transition-transform duration-700"
-                >
-                    <img
-                        src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=2000&auto=format&fit=crop"
-                        alt="Premium Quality"
-                        className="w-full h-full object-cover"
-                    />
-                </motion.div>
+                    {/* Left: Content */}
+                    <div className="order-2 md:order-1">
+                        <motion.span
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6 block"
+                        >
+                            Our Philosophy
+                        </motion.span>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 }}
+                            className="text-4xl md:text-6xl font-bold mb-8 text-black leading-tight tracking-tight"
+                        >
+                            Premium Design <br />
+                            and Quality
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            className="text-neutral-600 mb-10 text-lg leading-relaxed max-w-xl"
+                        >
+                            Every stitch tells a story. We believe in sustainable fashion that doesn&apos;t compromise on style. Our materials are sourced ethically and crafted by master artisans.
+                        </motion.p>
 
-                {/* Right: Content */}
-                <div className="px-4 md:pl-12">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        <motion.ul
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                            className="space-y-6 mb-12"
+                        >
+                            {['Ethically Sourced Materials', 'Premium Grade Fabric', 'Masterfully Crafted Details'].map((item) => (
+                                <li key={item} className="flex items-center text-black font-bold text-sm tracking-tight">
+                                    <div className="w-5 h-5 bg-black text-white rounded-full flex items-center justify-center mr-4 shrink-0">
+                                        <Check size={12} strokeWidth={3} />
+                                    </div>
+                                    {item}
+                                </li>
+                            ))}
+                        </motion.ul>
+
+                        <motion.button
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.4 }}
+                            className="group relative overflow-hidden bg-black text-white px-10 py-5 text-xs font-bold uppercase tracking-widest transition-all"
+                        >
+                            <span className="relative z-10 transition-colors group-hover:text-black">Read Our Story</span>
+                            <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                        </motion.button>
+                    </div>
+
+                    {/* Right: Image */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-5xl font-serif font-bold mb-6 text-purple-950 dark:text-white"
+                        transition={{ duration: 1 }}
+                        className="order-1 md:order-2 relative aspect-[4/5] overflow-hidden"
                     >
-                        Premium Design <br />
-                        and Quality
-                    </motion.h2>
-                    <p className="text-purple-800/70 dark:text-gray-400 mb-6 text-lg">
-                        Every stitch tells a story. We believe in sustainable fashion that doesn't compromise on style. Our materials are sourced ethically and crafted by master artisans.
-                    </p>
-                    <ul className="space-y-4 mb-8">
-                        {['Ethically Sourced', 'Premium Cotton', 'Master Craftsmanship'].map((item) => (
-                            <li key={item} className="flex items-center text-purple-900 dark:text-purple-200">
-                                <span className="material-icons text-purple-600 mr-3">check_circle</span>
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
-                    <button className="bg-purple-900 dark:bg-white text-white dark:text-black px-8 py-3 rounded-full font-bold uppercase tracking-wider text-sm hover:shadow-lg hover:scale-105 transition-all">
-                        Read Our Story
-                    </button>
+                        <Image
+                            src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=2000&auto=format&fit=crop"
+                            alt="Premium Quality"
+                            fill
+                            className="object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000"
+                        />
+                    </motion.div>
                 </div>
             </div>
         </section>
