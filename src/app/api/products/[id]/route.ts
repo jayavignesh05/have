@@ -9,7 +9,7 @@ export async function GET(
         const { id } = await params;
         // 1. Fetch Product
         const products = await query(
-            `SELECT p.id, p.name, p.price, p.image_url, p.description, c.category_name 
+            `SELECT p.id, p.name, p.price, p.thumbnail_url, p.description, c.category_name 
        FROM products p 
        LEFT JOIN categories c ON p.category_id = c.id
        WHERE p.id = ?`,
@@ -32,7 +32,7 @@ export async function GET(
             id: p.id,
             name: p.name,
             price: `$${Number(p.price).toFixed(2)} USD`,
-            image: p.image_url,
+            image: p.thumbnail_url,
             category: p.category_name || "Uncategorized",
             description: p.description || "",
             variants: variants // Attach variants here

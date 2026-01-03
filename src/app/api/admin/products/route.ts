@@ -49,7 +49,7 @@ export async function POST(req: Request) {
                 // Optional: Update base product fields if needed
             } else {
                 const [productResult] = await connection.query<ResultSetHeader>(
-                    "INSERT INTO products (name, category_id, price, image_url, description) VALUES (?, ?, ?, ?, ?)",
+                    "INSERT INTO products (name, category_id, price, thumbnail_url, description) VALUES (?, ?, ?, ?, ?)",
                     [name, categoryId, parseFloat(price), image || null, description || ""]
                 );
                 productId = productResult.insertId;
