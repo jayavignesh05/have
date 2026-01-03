@@ -85,7 +85,7 @@ export default function Home() {
       {/* -------------------------------------------------- */}
       {/* 2. SCROLLABLE CONTENT (Z-10) */}
       {/* -------------------------------------------------- */}
-      <div className="relative z-10 bg-white shadow-[0_-25px_50px_-12px_rgba(0,0,0,0.25)] rounded-t-[2.5rem] mt-[-2vh]">
+      <div className="relative z-10 bg-white shadow-[0_-25px_50px_-12px_rgba(0,0,0,0.25)] rounded-t-[2.5rem] ">
 
         {/* Bento Grid */}
         <Reveal delay={0.1}>
