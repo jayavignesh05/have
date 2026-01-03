@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
 import ScrollingMarquee from "@/components/ScrollingMarquee";
 import ModernFashionHeroSlider from "@/components/ModernFashionHeroSlider";
-import NewsletterModal from "@/components/NewsletterModal";
+
 import ValueProps from "@/components/ValueProps";
 import Testimonials from "@/components/Testimonials";
 import EditorialSection from "@/components/EditorialSection";
@@ -153,7 +153,7 @@ export default function Home() {
         </div>
       </div>
 
-      <NewsletterModal />
+
     </main>
   );
 }
