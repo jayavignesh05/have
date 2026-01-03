@@ -13,7 +13,7 @@ export default function InstagramFeed() {
         <section className="relative overflow-hidden bg-white">
             <div className="max-w-screen-2xl mx-auto px-6 py-20 text-center">
                 <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6 block">Follow Us</span>
-                <h2 className="text-4xl font-bold tracking-tight text-black">@VEON_STUDIO</h2>
+                <h2 className="text-4xl font-bold tracking-tight text-black">@HAVE_STUDIO</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-5 h-64 md:h-96">
                 {images.map((img, i) => (

@@ -11,8 +11,8 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     <div className="col-span-1 md:col-span-1">
-                        <h2 className="text-2xl font-serif font-bold mb-4 text-purple-100">VÉON</h2>
-                        <p className="text-purple-200 text-sm mb-6">Sign up to receive the latest news from Véon.</p>
+                        <h2 className="text-2xl font-serif font-bold mb-4 text-purple-100">HAVE</h2>
+                        <p className="text-purple-200 text-sm mb-6">Sign up to receive the latest news from HAVE.</p>
                         <form
                             className="flex"
                             onSubmit={(e) => {
@@ -59,7 +59,7 @@ export default function Footer() {
                         <a className="hover:text-white transition-colors" href="#">LinkedIn</a>
                     </div>
                     <div>
-                        © 2025 Véon. All rights reserved.
+                        © 2025 HAVE. All rights reserved.
                     </div>
                 </div>
             </div>

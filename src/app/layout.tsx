@@ -18,7 +18,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Véon - Fashion E-commerce",
+  title: "HAVE - Fashion E-commerce",
   description: "Creating timeless fashion with quality, innovation, and sustainability.",
 };
 

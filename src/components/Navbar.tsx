@@ -56,7 +56,7 @@ export default function Navbar() {
                     {/* Logo - Left Aligned */}
                     <div className="flex-shrink-0">
                         <Link href="/" className="font-sans text-2xl font-bold tracking-[0.2em] uppercase text-gray-900 dark:text-gray-100">
-                            VEON
+                            HAVE
                         </Link>
                     </div>
 
