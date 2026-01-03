@@ -20,9 +20,32 @@ import StorySection from "@/components/StorySection";
 import CollectionSplit from "@/components/CollectionSplit";
 import Navbar from "@/components/Navbar";
 
-import { bestSellers, newIn } from "@/data/products";
+import { useState, useEffect } from "react";
+import { Product } from "@/data/products";
+
+// import { bestSellers, newIn } from "@/data/products"; // Removing static data imports
 
 export default function Home() {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const res = await fetch('/api/products');
+        if (res.ok) {
+          const data = await res.json();
+          setProducts(data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch products", error);
+      }
+    }
+    fetchProducts();
+  }, []);
+
+  const bestSellers = products.length > 0 ? products.slice(0, 4) : [];
+  const newIn = products.length > 0 ? products.slice(4, 8) : [];
+
   // 1. Scroll Tracking logic
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({

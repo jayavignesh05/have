@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useShop } from "@/context/ShopContext";
-import { products } from "@/data/products";
+import { Product } from "@/data/products";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
@@ -10,6 +10,16 @@ export default function SearchOverlay() {
     const { isSearchOpen, toggleSearch } = useShop();
     const [query, setQuery] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
+    const [products, setProducts] = useState<Product[]>([]);
+
+    useEffect(() => {
+        if (isSearchOpen && products.length === 0) {
+            fetch('/api/products')
+                .then(res => res.json())
+                .then(data => setProducts(data))
+                .catch(err => console.error(err));
+        }
+    }, [isSearchOpen, products.length]);
 
     // Focus input when opened
     useEffect(() => {

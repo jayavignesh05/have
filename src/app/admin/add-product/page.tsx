@@ -19,7 +19,7 @@ export default function AddProductPage() {
         sizes: [] as string[],
     });
 
-    const AVAILABLE_SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
+    const AVAILABLE_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "28", "30", "32", "34", "36"];
 
     const handleChange = (
         e: React.ChangeEvent<
@@ -205,13 +205,29 @@ export default function AddProductPage() {
                                             name="category"
                                             value={formData.category}
                                             onChange={handleChange}
+                                            required
                                             className="w-full pl-10 pr-4 py-4 bg-neutral-50 border-b-2 border-neutral-200 focus:border-black focus:bg-white outline-none transition-all appearance-none cursor-pointer"
                                         >
-                                            <option value="">Select...</option>
-                                            <option value="Shirts">Shirts</option>
-                                            <option value="T-Shirts">T-Shirts</option>
-                                            <option value="Jeans">Jeans</option>
-                                            <option value="Hoodies">Hoodies</option>
+                                            <option value="">Select Category...</option>
+                                            <optgroup label="Tops">
+                                                <option value="T-Shirts">T-Shirts</option>
+                                                <option value="Shirts">Shirts</option>
+                                                <option value="Hoodies">Hoodies</option>
+                                                <option value="Sweatshirts">Sweatshirts</option>
+                                                <option value="Jackets">Jackets</option>
+                                                <option value="Outerwear">Outerwear</option>
+                                            </optgroup>
+                                            <optgroup label="Bottoms">
+                                                <option value="Jeans">Jeans</option>
+                                                <option value="Trousers">Trousers</option>
+                                                <option value="Cargo Pants">Cargo Pants</option>
+                                                <option value="Joggers">Joggers</option>
+                                                <option value="Shorts">Shorts</option>
+                                            </optgroup>
+                                            <optgroup label="Accessories">
+                                                <option value="Hats">Hats</option>
+                                                <option value="Bags">Bags</option>
+                                            </optgroup>
                                         </select>
                                     </div>
                                 </div>

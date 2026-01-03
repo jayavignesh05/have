@@ -1,6 +1,6 @@
 "use client";
 
-import { products } from "@/data/products";
+import { Product } from "@/data/products";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
@@ -8,7 +8,7 @@ import ProductCard from "@/components/ProductCard";
 
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
 
 function ShopContent() {
     const searchParams = useSearchParams();
@@ -16,15 +16,41 @@ function ShopContent() {
     const category = searchParams.get("category");
     const sort = searchParams.get("sort");
 
+    const [products, setProducts] = useState<Product[]>([]);
     const [isSortOpen, setIsSortOpen] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+    useEffect(() => {
+        async function fetchProducts() {
+            try {
+                const res = await fetch('/api/products');
+                if (res.ok) {
+                    const data = await res.json();
+                    setProducts(data);
+                }
+            } catch (error) {
+                console.error("Failed to fetch products", error);
+            }
+        }
+        fetchProducts();
+    }, []);
 
     // Get unique categories for filter
     const categories = Array.from(new Set(products.map(p => p.category).filter(Boolean)));
 
     // internal filtering
+    const TOPS = ["T-Shirts", "Shirts", "Hoodies", "Sweatshirts", "Jackets", "Outerwear"];
+    const BOTTOMS = ["Jeans", "Trousers", "Cargo Pants", "Joggers", "Shorts"];
+
     const productList = category
-        ? products.filter((p) => (p.category || "").toLowerCase() === category.toLowerCase())
+        ? products.filter((p) => {
+            const cat = (p.category || "").trim().toLowerCase();
+            const filterCat = category.trim().toLowerCase();
+
+            if (filterCat === "tops") return TOPS.some(t => t.toLowerCase() === cat);
+            if (filterCat === "bottoms") return BOTTOMS.some(b => b.toLowerCase() === cat);
+            return cat === filterCat;
+        })
         : [...products];
 
     // internal sorting
@@ -68,6 +94,7 @@ function ShopContent() {
                         ? `Explore our collection of ${category.toLowerCase()}.`
                         : "Explore our complete collection of timeless essentials, designed for the modern wardrobe."}
                 </p>
+
             </div>
 
             {/* Toolbar */}
