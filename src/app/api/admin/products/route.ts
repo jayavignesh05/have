@@ -5,7 +5,7 @@ import { ResultSetHeader, RowDataPacket } from "mysql2";
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { name, price, category, image, description, quantity, sizes } = body;
+        const { name, price, category, image, description, material, quantity, sizes } = body;
 
         if (!name || !price || !category) {
             return NextResponse.json(
@@ -49,8 +49,8 @@ export async function POST(req: Request) {
                 // Optional: Update base product fields if needed
             } else {
                 const [productResult] = await connection.query<ResultSetHeader>(
-                    "INSERT INTO products (name, category_id, price, thumbnail_url, description) VALUES (?, ?, ?, ?, ?)",
-                    [name, categoryId, parseFloat(price), image || null, description || ""]
+                    "INSERT INTO products (name, category_id, price, thumbnail_url, description, material) VALUES (?, ?, ?, ?, ?, ?)",
+                    [name, categoryId, parseFloat(price), image || null, description || "", material || null]
                 );
                 productId = productResult.insertId;
             }

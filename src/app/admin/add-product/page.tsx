@@ -15,6 +15,7 @@ export default function AddProductPage() {
         badge: "",
         image: "",
         description: "",
+        material: "",
         variants: [] as { size: string; quantity: string }[],
     });
 
@@ -115,6 +116,7 @@ export default function AddProductPage() {
                     badge: "",
                     image: "",
                     description: "",
+                    material: "",
                     variants: [],
                 });
             } else {
@@ -272,6 +274,21 @@ export default function AddProductPage() {
                                             </optgroup>
                                         </select>
                                     </div>
+                                </div>
+
+                                {/* Material */}
+                                <div className="space-y-2">
+                                    <label className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                                        Material
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="material"
+                                        value={formData.material || ""}
+                                        onChange={handleChange}
+                                        placeholder="e.g. 100% Cotton"
+                                        className="w-full px-4 py-4 bg-neutral-50 border-b-2 border-neutral-200 focus:border-black focus:bg-white outline-none transition-all placeholder:text-neutral-300"
+                                    />
                                 </div>
                             </div>
 

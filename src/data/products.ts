@@ -7,6 +7,8 @@ export interface Product {
     category?: string;
     variants?: { size: string; quantity: number }[];
     selectedSize?: string;
+    description?: string;
+    material?: string;
 }
 
 export const products: Product[] = [

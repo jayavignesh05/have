@@ -202,14 +202,14 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                             <div>
                                 <h3 className="font-bold text-sm uppercase mb-3 text-[var(--foreground)] opacity-90">Description</h3>
                                 <p className="text-sm text-[var(--foreground)] opacity-70 leading-relaxed">
-                                    Crafted with precision and designed for the modern individual. This piece combines timeless aesthetics with contemporary comfort, ensuring you look effortless in every setting.
+                                    {product.description}
                                 </p>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <h4 className="font-bold text-xs uppercase mb-2 text-[var(--foreground)] opacity-90">Material</h4>
-                                    <p className="text-sm text-[var(--foreground)] opacity-70">100% Cotton</p>
+                                    <p className="text-sm text-[var(--foreground)] opacity-70">{product.material || "100% Cotton"}</p>
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-xs uppercase mb-2 text-[var(--foreground)] opacity-90">Care</h4>
