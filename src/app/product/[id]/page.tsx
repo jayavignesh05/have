@@ -4,7 +4,7 @@ import { use, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@/data/products";
-import Navbar from "@/components/Navbar";
+
 import Footer from "@/components/Footer";
 import { useShop } from "@/context/ShopContext";
 import { notFound } from "next/navigation";
@@ -62,7 +62,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
     return (
         <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <Navbar />
+
 
             <div className="pt-40 pb-12 max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">

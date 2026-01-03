@@ -4,11 +4,15 @@ import { useState, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useShop } from "@/context/ShopContext";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
     const { cart, toggleCart, toggleSearch, toggleWishlistDrawer } = useShop();
     const [isShopHovered, setIsShopHovered] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const pathname = usePathname();
+
+    if (pathname.startsWith("/admin")) return null;
 
     const handleMouseEnter = () => {
         if (timeoutRef.current) {
@@ -49,9 +53,13 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Main Navbar */}
-            <nav className="bg-white/40 dark:bg-black/40 backdrop-blur-md border-b border-white/20 dark:border-white/5 transition-all duration-300 relative">
-                <div className="max-w-screen-2xl mx-auto px-6 py-4 md:py-5 flex justify-between items-center relative z-20">
+            <motion.nav
+                initial={{ opacity: 0, y: 0, filter: "blur(10px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                className="bg-white/40 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/5 transition-all duration-300 relative mx-auto w-[95%] max-w-5xl rounded-2xl mt-2"
+            >
+                <div className="px-8 py-4 md:py-3 flex justify-between items-center relative z-20">
 
                     {/* Logo - Left Aligned */}
                     <div className="flex-shrink-0">
@@ -64,15 +72,14 @@ export default function Navbar() {
                     <div className="flex items-center gap-8 md:gap-12 text-sm font-medium tracking-wide text-gray-800 dark:text-gray-200">
 
                         {/* Navigation Links - Center-Right */}
-                        <div className="hidden md:flex gap-10">
+                        <div className="hidden md:flex gap-10 items-center">
                             <div
                                 onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}
-                                className="relative py-2"
                             >
                                 <Link
                                     href="/shop"
-                                    className={`transition-colors hover:text-black dark:hover:text-white uppercase tracking-widest text-[11px] font-bold ${isShopHovered ? "opacity-100" : "opacity-70"}`}
+                                    className={`transition-colors  hover:text-black dark:hover:text-white uppercase tracking-widest text-[11px] font-bold ${isShopHovered ? "opacity-100" : "opacity-70"}`}
                                 >
                                     Shop
                                 </Link>
@@ -109,7 +116,7 @@ export default function Navbar() {
                             transition={{ duration: 0.2 }}
                             onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}
-                            className="absolute top-full left-0 w-full bg-[#18181b] border-t border-gray-800 shadow-2xl z-10"
+                            className="absolute top-full left-0 w-full bg-[#18181b] border border-gray-800 shadow-2xl z-10 rounded-2xl mt-2 overflow-hidden"
                         >
                             <div className="max-w-screen-2xl mx-auto px-6 py-12 grid grid-cols-4 gap-12 text-sm">
                                 {/* Column 1: Categories */}
@@ -155,7 +162,7 @@ export default function Navbar() {
                         </motion.div>
                     )}
                 </AnimatePresence>
-            </nav>
+            </motion.nav>
         </div>
     );
 }

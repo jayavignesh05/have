@@ -17,6 +17,8 @@ interface ShopContextType {
     toggleSearch: () => void;
     isWishlistOpen: boolean;
     toggleWishlistDrawer: () => void;
+    hasHomeLoaded: boolean;
+    setHasHomeLoaded: (loaded: boolean) => void;
 }
 
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
@@ -28,6 +30,7 @@ export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+    const [hasHomeLoaded, setHasHomeLoaded] = useState(false);
 
     const toggleCart = () => setIsCartOpen((prev) => !prev);
     const toggleSearch = () => setIsSearchOpen((prev) => !prev);
@@ -78,6 +81,8 @@ export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
                 toggleSearch,
                 isWishlistOpen,
                 toggleWishlistDrawer,
+                hasHomeLoaded,
+                setHasHomeLoaded,
             }}
         >
             {children}

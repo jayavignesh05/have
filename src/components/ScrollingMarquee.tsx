@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useShop } from "@/context/ShopContext";
 
 export default function ScrollingMarquee() {
+    const { hasHomeLoaded } = useShop();
     const items = [
         "FREE SHIPPING ON ALL ORDERS",
         "NEW DROP: AUTUMN COLLECTION",
@@ -11,7 +13,12 @@ export default function ScrollingMarquee() {
     ];
 
     return (
-        <div className="bg-white/50 py-4 overflow-hidden border-y border-white/30 ">
+        <motion.div
+            initial={!hasHomeLoaded ? { opacity: 0, filter: "blur(10px)" } : { opacity: 1, filter: "blur(0px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={!hasHomeLoaded ? { duration: 1, delay: 0.2 } : { duration: 0 }}
+            className="bg-white/50 py-4 overflow-hidden border-y border-white/30 "
+        >
             <div className="flex whitespace-nowrap">
                 <motion.div
                     className="flex gap-20 items-center px-10"
@@ -33,6 +40,6 @@ export default function ScrollingMarquee() {
                     ))}
                 </motion.div>
             </div>
-        </div>
+        </motion.div>
     );
 }

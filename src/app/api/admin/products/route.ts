@@ -21,9 +21,7 @@ export async function POST(req: Request) {
             await connection.beginTransaction();
 
             // 1. Get or Insert Category
-            // We check if category matches 'category_name'
             let categoryId: number | null = null;
-
             const [existingCategories] = await connection.query<RowDataPacket[]>(
                 "SELECT id FROM categories WHERE category_name = ?",
                 [category]
@@ -32,7 +30,6 @@ export async function POST(req: Request) {
             if (existingCategories.length > 0) {
                 categoryId = existingCategories[0].id;
             } else {
-                // Insert new category
                 const [catResult] = await connection.query<ResultSetHeader>(
                     "INSERT INTO categories (category_name) VALUES (?)",
                     [category]
@@ -40,39 +37,60 @@ export async function POST(req: Request) {
                 categoryId = catResult.insertId;
             }
 
-            // 2. Insert Product
-            // Schema: id, name, category_id, price, image_url, description, created_at
-            const [productResult] = await connection.query<ResultSetHeader>(
-                "INSERT INTO products (name, category_id, price, image_url, description) VALUES (?, ?, ?, ?, ?)",
-                [name, categoryId, parseFloat(price), image || null, description || ""]
+            // 2. Check or Insert Product
+            let productId: number;
+            const [existingProduct] = await connection.query<RowDataPacket[]>(
+                "SELECT id FROM products WHERE name = ?",
+                [name]
             );
 
-            const productId = productResult.insertId;
-
-            // 3. Insert Variants (Sizes and Quantity)
-            // Schema: id, product_id, size, quantity
-            // Logic: If multiple sizes are selected, we distribute the quantity or apply it to each?
-            // User request implies "Quintati" (Quantity). Let's apply the entered quantity to EACH size for now 
-            // or assume the user inputs total stock.
-            // Usually, quantity is per variant.
-            if (sizes && sizes.length > 0) {
-                const qtyPerSize = quantity ? parseInt(quantity.toString()) : 0;
-
-                for (const size of sizes) {
-                    await connection.query(
-                        "INSERT INTO product_variants (product_id, size, quantity) VALUES (?, ?, ?)",
-                        [productId, size, qtyPerSize]
-                    );
-                }
+            if (existingProduct.length > 0) {
+                productId = existingProduct[0].id;
+                // Optional: Update base product fields if needed
             } else {
-                // Fallback if no size selected? Or maybe insert a "One Size" logic?
-                // For now, if no size, we might skip variants or insert a default. 
-                // Based on UI, user selects sizes.
+                const [productResult] = await connection.query<ResultSetHeader>(
+                    "INSERT INTO products (name, category_id, price, image_url, description) VALUES (?, ?, ?, ?, ?)",
+                    [name, categoryId, parseFloat(price), image || null, description || ""]
+                );
+                productId = productResult.insertId;
+            }
+
+            // 3. Insert/Update Variants
+            const variants = body.variants || [];
+
+            // Legacy support
+            if (variants.length === 0 && sizes && sizes.length > 0) {
+                const qtyPerSize = quantity ? parseInt(quantity.toString()) : 0;
+                sizes.forEach((s: string) => variants.push({ size: s, quantity: qtyPerSize }));
+            }
+
+            if (variants.length > 0) {
+                for (const variant of variants) {
+                    // Check if variant exists
+                    const [existingVariant] = await connection.query<RowDataPacket[]>(
+                        "SELECT id FROM product_variants WHERE product_id = ? AND size = ?",
+                        [productId, variant.size]
+                    );
+
+                    if (existingVariant.length > 0) {
+                        // Update existing variant quantity
+                        await connection.query(
+                            "UPDATE product_variants SET quantity = ? WHERE id = ?",
+                            [variant.quantity, existingVariant[0].id]
+                        );
+                    } else {
+                        // Insert new variant
+                        await connection.query(
+                            "INSERT INTO product_variants (product_id, size, quantity) VALUES (?, ?, ?)",
+                            [productId, variant.size, variant.quantity]
+                        );
+                    }
+                }
             }
 
             await connection.commit();
 
-            return NextResponse.json({ message: "Product created successfully", productId });
+            return NextResponse.json({ message: "Product created/updated successfully", productId });
 
         } catch (err) {
             await connection.rollback();

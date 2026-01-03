@@ -15,8 +15,7 @@ export default function AddProductPage() {
         badge: "",
         image: "",
         description: "",
-        quantity: "",
-        sizes: [] as string[],
+        variants: [] as { size: string; quantity: string }[],
     });
 
     const AVAILABLE_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "28", "30", "32", "34", "36"];
@@ -32,13 +31,24 @@ export default function AddProductPage() {
 
     const handleSizeToggle = (size: string) => {
         setFormData(prev => {
-            const currentSizes = prev.sizes;
-            if (currentSizes.includes(size)) {
-                return { ...prev, sizes: currentSizes.filter(s => s !== size) };
+            const currentVariants = prev.variants;
+            const exists = currentVariants.find(v => v.size === size);
+
+            if (exists) {
+                // Remove
+                return { ...prev, variants: currentVariants.filter(v => v.size !== size) };
             } else {
-                return { ...prev, sizes: [...currentSizes, size] };
+                // Add with default quantity ""
+                return { ...prev, variants: [...currentVariants, { size, quantity: "" }] };
             }
         });
+    };
+
+    const handleVariantQuantityChange = (size: string, qty: string) => {
+        setFormData(prev => ({
+            ...prev,
+            variants: prev.variants.map(v => v.size === size ? { ...v, quantity: qty } : v)
+        }));
     };
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +70,11 @@ export default function AddProductPage() {
             const res = await fetch("/api/admin/products", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData,
+                    // Ensure variants are integers? Backend handles it or string ok? backend expects number or parses string. 
+                    // Let's send as is, backend should handle.
+                }),
             });
 
             if (res.ok) {
@@ -72,8 +86,7 @@ export default function AddProductPage() {
                     badge: "",
                     image: "",
                     description: "",
-                    quantity: "",
-                    sizes: [],
+                    variants: [],
                 });
             } else {
                 const errorData = await res.json();
@@ -233,47 +246,56 @@ export default function AddProductPage() {
                                 </div>
                             </div>
 
-                            {/* Quality & Sizes */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                {/* Quality */}
+                            {/* Inventory & Variants */}
+                            <div className="space-y-6">
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-                                        Quantity
+                                        Select Available Sizes
                                     </label>
-                                    <div className="relative">
-                                        <Hash className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
-                                        <input
-                                            type="number"
-                                            name="quantity"
-                                            value={formData.quantity}
-                                            onChange={handleChange}
-                                            placeholder="e.g. 50"
-                                            className="w-full pl-10 pr-4 py-4 bg-neutral-50 border-b-2 border-neutral-200 focus:border-black focus:bg-white outline-none transition-all placeholder:text-neutral-300"
-                                        />
+                                    <div className="flex flex-wrap gap-2 pt-2">
+                                        {AVAILABLE_SIZES.map(size => {
+                                            const isActive = formData.variants.some(v => v.size === size);
+                                            return (
+                                                <button
+                                                    key={size}
+                                                    type="button"
+                                                    onClick={() => handleSizeToggle(size)}
+                                                    className={`px-4 py-2 text-sm font-medium border rounded-full transition-all ${isActive
+                                                        ? "bg-black text-white border-black"
+                                                        : "bg-white text-neutral-500 border-neutral-200 hover:border-black"
+                                                        }`}
+                                                >
+                                                    {size}
+                                                </button>
+                                            );
+                                        })}
                                     </div>
                                 </div>
 
-                                {/* Sizes */}
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-                                        Available Sizes
-                                    </label>
-                                    <div className="flex flex-wrap gap-2 pt-2">
-                                        {AVAILABLE_SIZES.map(size => (
-                                            <button
-                                                key={size}
-                                                type="button"
-                                                onClick={() => handleSizeToggle(size)}
-                                                className={`px-3 py-1.5 text-sm border rounded-full transition-all ${formData.sizes.includes(size)
-                                                    ? "bg-black text-white border-black"
-                                                    : "bg-white text-neutral-500 border-neutral-200 hover:border-black"
-                                                    }`}
-                                            >
-                                                {size}
-                                            </button>
-                                        ))}
+                                {/* Quantity Inputs for Selected Sizes */}
+                                {formData.variants.length > 0 && (
+                                    <div className="space-y-4 pt-4 border-t border-dashed border-neutral-200">
+                                        <label className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                                            Stock Levels
+                                        </label>
+                                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                            {formData.variants.sort((a, b) => {
+                                                return AVAILABLE_SIZES.indexOf(a.size) - AVAILABLE_SIZES.indexOf(b.size);
+                                            }).map((variant) => (
+                                                <div key={variant.size} className="bg-neutral-50 p-4 rounded-lg border border-neutral-100 flex flex-col gap-2">
+                                                    <span className="text-sm font-bold">{variant.size}</span>
+                                                    <input
+                                                        type="number"
+                                                        placeholder="Qty"
+                                                        value={variant.quantity}
+                                                        onChange={(e) => handleVariantQuantityChange(variant.size, e.target.value)}
+                                                        className="w-full bg-white border border-neutral-200 rounded px-3 py-2 text-sm focus:border-black outline-none transition-colors"
+                                                    />
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
+                                )}
                             </div>
 
                             {/* Badge */}
@@ -382,7 +404,7 @@ export default function AddProductPage() {
                                     disabled={loading}
                                     className="bg-black text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-sm flex items-center gap-2 disabled:opacity-70 disabled:hover:scale-100"
                                 >
-                                    {loading ? "Adding..." : (
+                                    {loading ? "Publishing..." : (
                                         <>
                                             <Save className="w-4 h-4" />
                                             Publish

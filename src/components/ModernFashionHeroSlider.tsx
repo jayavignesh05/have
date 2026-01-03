@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ShoppingBag } from "lucide-react";
 import Link from "next/link";
+import { useShop } from "@/context/ShopContext";
+
 const slides = [
     {
         id: 1,
@@ -33,7 +35,30 @@ const slides = [
 ];
 
 export default function ModernFashionHeroSlider() {
+    const { hasHomeLoaded } = useShop();
     const [activeIndex, setActiveIndex] = useState(0);
+    const isMounting = useRef(true);
+
+    useEffect(() => {
+        isMounting.current = false;
+    }, []);
+
+    const getInitialProps = () => {
+        // 1. First Page Load: Blur In
+        if (!hasHomeLoaded) return { opacity: 0.8, scale: 1.1, filter: "blur(10px)" };
+
+        // 2. Returning to Home (Re-mount): Static (No Animation)
+        if (isMounting.current) return { opacity: 1, scale: 1, filter: "blur(0px)" };
+
+        // 3. Slide Change: Standard Cross-fade
+        return { opacity: 0, scale: 1.1, filter: "blur(0px)" };
+    };
+
+    const getTransitionProps = () => {
+        if (!hasHomeLoaded) return { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const };
+        if (isMounting.current && hasHomeLoaded) return { duration: 0 }; // Instant
+        return { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const };
+    };
 
     return (
         <section className="relative h-screen w-full overflow-hidden bg-black font-sans transition-all duration-500">
@@ -44,10 +69,10 @@ export default function ModernFashionHeroSlider() {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeIndex}
-                        initial={{ opacity: 0, scale: 1.1 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+                        initial={getInitialProps()}
+                        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, filter: "blur(5px)" }}
+                        transition={getTransitionProps()}
                         className="absolute inset-0"
                     >
                         <Image
@@ -63,7 +88,12 @@ export default function ModernFashionHeroSlider() {
             </div>
 
             {/* 3. Foreground Content */}
-            <div className="relative h-full flex flex-col justify-end pb-12 px-6 md:px-12 max-w-screen-2xl mx-auto z-10">
+            <motion.div
+                initial={!hasHomeLoaded ? { opacity: 0, filter: "blur(10px)" } : { opacity: 1, filter: "blur(0px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={!hasHomeLoaded ? { duration: 1, delay: 0.2 } : { duration: 0 }}
+                className="relative h-full flex flex-col justify-end pb-12 px-6 md:px-12 max-w-screen-2xl mx-auto z-10"
+            >
 
                 {/* Headlines (Large, Left Aligned) */}
                 <div className="">
@@ -145,7 +175,7 @@ export default function ModernFashionHeroSlider() {
                     </div>
 
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }

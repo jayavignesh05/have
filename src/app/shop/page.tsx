@@ -1,7 +1,7 @@
 "use client";
 
 import { Product } from "@/data/products";
-import Navbar from "@/components/Navbar";
+
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 
@@ -179,7 +179,7 @@ function ShopContent() {
 export default function ShopPage() {
     return (
         <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <Navbar />
+
             <Suspense fallback={<div className="pt-40 text-center">Loading...</div>}>
                 <ShopContent />
             </Suspense>

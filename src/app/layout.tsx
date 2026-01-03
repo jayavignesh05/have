@@ -6,6 +6,7 @@ import Toast from "@/components/Toast";
 import CartDrawer from "@/components/CartDrawer";
 import SearchOverlay from "@/components/SearchOverlay";
 import WishlistDrawer from "@/components/WishlistDrawer";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -37,6 +38,7 @@ export default function RootLayout({
         className={`${inter.variable} ${playfair.variable} antialiased bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300`}
       >
         <ShopProvider>
+          <Navbar />
           {children}
           <WishlistDrawer />
           <CartDrawer />

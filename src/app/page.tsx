@@ -18,15 +18,21 @@ import EditorialSection from "@/components/EditorialSection";
 import BlogSection from "@/components/BlogSection";
 import StorySection from "@/components/StorySection";
 import CollectionSplit from "@/components/CollectionSplit";
-import Navbar from "@/components/Navbar";
+
 
 import { useState, useEffect } from "react";
 import { Product } from "@/data/products";
+import { useShop } from "@/context/ShopContext";
 
 // import { bestSellers, newIn } from "@/data/products"; // Removing static data imports
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
+  const { setHasHomeLoaded } = useShop();
+
+  useEffect(() => {
+    setHasHomeLoaded(true);
+  }, []);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -65,7 +71,7 @@ export default function Home() {
     <main ref={containerRef} className="min-h-screen bg-white text-black font-sans relative">
 
       {/* Navbar - Fixed at top */}
-      <Navbar />
+
 
       {/* -------------------------------------------------- */}
       {/* 1. STICKY PARALLAX HERO (Z-0) */}
