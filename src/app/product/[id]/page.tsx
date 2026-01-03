@@ -144,8 +144,9 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
                         <div className="flex gap-4 mb-12">
                             <button
-                                onClick={() => addToCart(product)}
-                                className="flex-1 bg-white text-black py-4 font-bold uppercase tracking-wide text-sm hover:bg-gray-200 transition-colors rounded-sm shadow-xl"
+                                onClick={() => addToCart({ ...product, selectedSize })}
+                                disabled={!selectedSize}
+                                className="flex-1 bg-white text-black py-4 font-bold uppercase tracking-wide text-sm hover:bg-gray-200 transition-colors rounded-sm shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 Add to Bag
                             </button>

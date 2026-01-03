@@ -47,9 +47,14 @@ function ShopContent() {
             const cat = (p.category || "").trim().toLowerCase();
             const filterCat = category.trim().toLowerCase();
 
+            // 1. Direct match (e.g. "Tops" == "Tops", or "T-Shirts" == "T-Shirts")
+            if (cat === filterCat) return true;
+
+            // 2. Parent Category Logic (e.g. "T-Shirts" belongs to "Tops")
             if (filterCat === "tops") return TOPS.some(t => t.toLowerCase() === cat);
             if (filterCat === "bottoms") return BOTTOMS.some(b => b.toLowerCase() === cat);
-            return cat === filterCat;
+
+            return false;
         })
         : [...products];
 

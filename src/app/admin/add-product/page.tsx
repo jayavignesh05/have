@@ -210,23 +210,23 @@ export default function AddProductPage() {
                                         >
                                             <option value="">Select Category...</option>
                                             <optgroup label="Tops">
-                                                <option value="T-Shirts">T-Shirts</option>
-                                                <option value="Shirts">Shirts</option>
-                                                <option value="Hoodies">Hoodies</option>
-                                                <option value="Sweatshirts">Sweatshirts</option>
-                                                <option value="Jackets">Jackets</option>
-                                                <option value="Outerwear">Outerwear</option>
+                                                <option value="Tops">T-Shirts</option>
+                                                <option value="Tops">Shirts</option>
+                                                <option value="Tops">Hoodies</option>
+                                                <option value="Tops">Sweatshirts</option>
+                                                <option value="Tops">Jackets</option>
+                                                <option value="Tops">Outerwear</option>
                                             </optgroup>
                                             <optgroup label="Bottoms">
-                                                <option value="Jeans">Jeans</option>
-                                                <option value="Trousers">Trousers</option>
-                                                <option value="Cargo Pants">Cargo Pants</option>
-                                                <option value="Joggers">Joggers</option>
-                                                <option value="Shorts">Shorts</option>
+                                                <option value="Bottoms">Jeans</option>
+                                                <option value="Bottoms">Trousers</option>
+                                                <option value="Bottoms">Cargo Pants</option>
+                                                <option value="Bottoms">Joggers</option>
+                                                <option value="Bottoms">Shorts</option>
                                             </optgroup>
                                             <optgroup label="Accessories">
-                                                <option value="Hats">Hats</option>
-                                                <option value="Bags">Bags</option>
+                                                <option value="Accessories">Hats</option>
+                                                <option value="Accessories">Bags</option>
                                             </optgroup>
                                         </select>
                                     </div>

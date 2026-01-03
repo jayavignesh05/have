@@ -6,6 +6,7 @@ export interface Product {
     badge?: string;
     category?: string;
     variants?: { size: string; quantity: number }[];
+    selectedSize?: string;
 }
 
 export const products: Product[] = [

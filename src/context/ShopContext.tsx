@@ -1,13 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
-
-interface Product {
-    id: number;
-    name: string;
-    price: string;
-    image: string;
-}
+import { Product } from "@/data/products";
 
 interface ShopContextType {
     cart: Product[];
