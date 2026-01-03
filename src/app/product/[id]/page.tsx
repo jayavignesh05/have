@@ -4,8 +4,7 @@ import { use, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@/data/products";
-import Lottie from "lottie-react";
-import loadingAnimation from "@/animations/loading.json";
+import { Skeleton } from "antd";
 
 import Footer from "@/components/Footer";
 import { useShop } from "@/context/ShopContext";
@@ -19,7 +18,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     const [loading, setLoading] = useState(true);
     const { addToCart, toggleWishlist, wishlist } = useShop();
     const [selectedSize, setSelectedSize] = useState("M");
-    const [isAddingToCart, setIsAddingToCart] = useState(false);
+
 
     useEffect(() => {
         async function fetchProduct() {
@@ -55,9 +54,38 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="w-24 h-24">
-                    <Lottie animationData={loadingAnimation} loop={true} />
+            <div className="min-h-screen bg-[var(--background)] pt-40 pb-12">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+                        {/* Image Skeleton */}
+                        <div className="aspect-[3/4] w-full rounded-sm overflow-hidden text-gray-200 dark:text-gray-800">
+                            <Skeleton.Button active block shape="square" className="!w-full !h-full" />
+                        </div>
+
+                        {/* Details Skeleton */}
+                        <div className="space-y-8 sticky top-24 self-start max-w-lg">
+                            <div className="space-y-4">
+                                <Skeleton active paragraph={{ rows: 0 }} title={{ width: 150 }} />
+                                <Skeleton active paragraph={{ rows: 0 }} title={{ width: 300, style: { height: 40, marginTop: 10 } }} />
+                                <Skeleton active paragraph={{ rows: 0 }} title={{ width: 100, style: { height: 32 } }} />
+                            </div>
+
+                            <div className="space-y-4">
+                                <Skeleton active paragraph={{ rows: 0 }} title={{ width: 60 }} />
+                                <div className="flex gap-3">
+                                    {Array.from({ length: 5 }).map((_, i) => (
+                                        <Skeleton.Button key={i} active size="large" shape="square" className="!w-12 !h-12" />
+                                    ))}
+                                </div>
+                            </div>
+
+                            <Skeleton.Button active block size="large" style={{ height: 56 }} />
+
+                            <div className="space-y-2 pt-8">
+                                <Skeleton active />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -153,18 +181,11 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
                         <div className="flex gap-4 mb-12">
                             <button
-                                onClick={async () => {
-                                    if (isAddingToCart) return;
-                                    setIsAddingToCart(true);
-                                    // Show full screen animation for 2 seconds
-                                    await new Promise(resolve => setTimeout(resolve, 2000));
-                                    addToCart({ ...product, selectedSize });
-                                    setIsAddingToCart(false);
-                                }}
-                                disabled={!selectedSize || isAddingToCart}
+                                onClick={() => addToCart({ ...product, selectedSize })}
+                                disabled={!selectedSize}
                                 className="flex-1 bg-white text-black py-4 font-bold uppercase tracking-wide text-sm hover:bg-gray-200 transition-colors rounded-sm shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-h-[56px]"
                             >
-                                {isAddingToCart ? "Adding..." : "Add to Bag"}
+                                Add to Bag
                             </button>
                             <button
                                 onClick={() => toggleWishlist(product.id)}
@@ -200,13 +221,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 </div>
             </div>
 
-            {isAddingToCart && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm transition-all duration-300">
-                    <div className="w-40 h-40 bg-white rounded-full flex items-center justify-center shadow-2xl p-4">
-                        <Lottie animationData={loadingAnimation} loop={true} />
-                    </div>
-                </div>
-            )}
+
             <Footer />
         </main>
     );

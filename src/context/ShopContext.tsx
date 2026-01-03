@@ -19,6 +19,7 @@ interface ShopContextType {
     toggleWishlistDrawer: () => void;
     hasHomeLoaded: boolean;
     setHasHomeLoaded: (loaded: boolean) => void;
+    isAddingToCart: boolean;
 }
 
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
@@ -31,14 +32,21 @@ export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isWishlistOpen, setIsWishlistOpen] = useState(false);
     const [hasHomeLoaded, setHasHomeLoaded] = useState(false);
+    const [isAddingToCart, setIsAddingToCart] = useState(false);
 
     const toggleCart = () => setIsCartOpen((prev) => !prev);
     const toggleSearch = () => setIsSearchOpen((prev) => !prev);
     const toggleWishlistDrawer = () => setIsWishlistOpen((prev) => !prev);
 
-    const addToCart = (product: Product) => {
+    const addToCart = async (product: Product) => {
+        setIsAddingToCart(true);
+        // Wait for 2 seconds to show animation
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
         setCart((prev) => [...prev, product]);
         showToast(`Added ${product.name} to cart`);
+
+        setIsAddingToCart(false);
         setIsCartOpen(true);
     };
 
@@ -83,6 +91,7 @@ export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
                 toggleWishlistDrawer,
                 hasHomeLoaded,
                 setHasHomeLoaded,
+                isAddingToCart,
             }}
         >
             {children}

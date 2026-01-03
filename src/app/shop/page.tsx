@@ -4,13 +4,12 @@ import { Product } from "@/data/products";
 
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
+import { Skeleton } from "antd";
 
 
 
 import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense, useState, useEffect } from "react";
-import Lottie from "lottie-react";
-import loadingAnimation from "@/animations/loading.json";
 
 function ShopContent() {
     const searchParams = useSearchParams();
@@ -170,11 +169,15 @@ function ShopContent() {
             {/* Grid */}
             <div className="max-w-screen-2xl mx-auto px-6 py-12">
                 {isLoading ? (
-                    <div className="flex justify-center items-center py-40">
-                        {/* Lottie Animation */}
-                        <div className="w-100 h-100">
-                            <Lottie animationData={loadingAnimation} loop={true} />
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 gap-y-12">
+                        {Array.from({ length: 8 }).map((_, i) => (
+                            <div key={i} className="flex flex-col gap-4">
+                                <div className="aspect-[3/4] w-full rounded-sm overflow-hidden text-gray-200 dark:text-gray-800">
+                                    <Skeleton.Button active block shape="square" className="!w-full !h-full" />
+                                </div>
+                                <Skeleton active paragraph={{ rows: 1 }} title={{ width: '70%' }} />
+                            </div>
+                        ))}
                     </div>
                 ) : productList.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 gap-y-12">

@@ -7,6 +7,7 @@ import CartDrawer from "@/components/CartDrawer";
 import SearchOverlay from "@/components/SearchOverlay";
 import WishlistDrawer from "@/components/WishlistDrawer";
 import Navbar from "@/components/Navbar";
+import CartLoader from "@/components/CartLoader";
 
 
 const inter = Inter({
@@ -44,6 +45,7 @@ export default function RootLayout({
           <WishlistDrawer />
           <CartDrawer />
           <SearchOverlay />
+          <CartLoader />
           <Toast />
         </ShopProvider>
       </body>
