@@ -25,19 +25,19 @@ const categories = [
     },
     {
         id: 3,
-        title: "Outerwear",
+        title: "Tops",
         subtitle: "Jackets & Coats.",
         image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80",
-        href: "/shop?category=outerwear",
+        href: "/shop?category=Tops",
         className: "md:col-span-1 md:row-span-1",
         span: "03"
     },
     {
         id: 4,
-        title: "Footwear",
+        title: "Bottoms",
         subtitle: "Boots & Sneakers.",
         image: "https://images.unsplash.com/photo-1527011046414-4781f1f94f8c?auto=format&fit=crop&w=600&q=80",
-        href: "/shop?category=footwear",
+        href: "/shop?category=Bottoms",
         className: "md:col-span-2 md:row-span-1",
         span: "04"
     },

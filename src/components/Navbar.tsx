@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useShop } from "@/context/ShopContext";
 import { usePathname } from "next/navigation";
+import ScrollingMarquee from "./ScrollingMarquee";
 
 export default function Navbar() {
     const { cart, toggleCart, toggleSearch, toggleWishlistDrawer } = useShop();
@@ -29,29 +30,7 @@ export default function Navbar() {
 
     return (
         <div className="fixed top-0 left-0 w-full z-50">
-            {/* Top Bar */}
-            <div className="bg-gray-400/40 backdrop-blur-sm text-[#1A1A1A] text-[10px] sm:text-[11px] font-semibold py-2 overflow-hidden border-b border-white/10">
-                <div className="flex w-full whitespace-nowrap opacity-80">
-                    <motion.div
-                        className="flex shrink-0 gap-16 px-8 tracking-widest uppercase"
-                        animate={{ x: "-100%" }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    >
-                        {[1, 2, 3, 4].map((i) => (
-                            <span key={i}>Free Shipping on all orders</span>
-                        ))}
-                    </motion.div>
-                    <motion.div
-                        className="flex shrink-0 gap-16 px-8 tracking-widest uppercase"
-                        animate={{ x: "-100%" }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    >
-                        {[1, 2, 3, 4].map((i) => (
-                            <span key={i}>Free Shipping on all orders</span>
-                        ))}
-                    </motion.div>
-                </div>
-            </div>
+            <ScrollingMarquee />
 
             <motion.nav
                 initial={{ opacity: 0, y: 0, filter: "blur(10px)" }}

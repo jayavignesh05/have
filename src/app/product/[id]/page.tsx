@@ -4,6 +4,8 @@ import { use, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@/data/products";
+import Lottie from "lottie-react";
+import loadingAnimation from "@/animations/loading.json";
 
 import Footer from "@/components/Footer";
 import { useShop } from "@/context/ShopContext";
@@ -17,6 +19,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     const [loading, setLoading] = useState(true);
     const { addToCart, toggleWishlist, wishlist } = useShop();
     const [selectedSize, setSelectedSize] = useState("M");
+    const [isAddingToCart, setIsAddingToCart] = useState(false);
 
     useEffect(() => {
         async function fetchProduct() {
@@ -51,7 +54,13 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     }, [product]);
 
     if (loading) {
-        return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="w-24 h-24">
+                    <Lottie animationData={loadingAnimation} loop={true} />
+                </div>
+            </div>
+        );
     }
 
     if (!product) {
@@ -144,11 +153,18 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
                         <div className="flex gap-4 mb-12">
                             <button
-                                onClick={() => addToCart({ ...product, selectedSize })}
-                                disabled={!selectedSize}
-                                className="flex-1 bg-white text-black py-4 font-bold uppercase tracking-wide text-sm hover:bg-gray-200 transition-colors rounded-sm shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                                onClick={async () => {
+                                    if (isAddingToCart) return;
+                                    setIsAddingToCart(true);
+                                    // Show full screen animation for 2 seconds
+                                    await new Promise(resolve => setTimeout(resolve, 2000));
+                                    addToCart({ ...product, selectedSize });
+                                    setIsAddingToCart(false);
+                                }}
+                                disabled={!selectedSize || isAddingToCart}
+                                className="flex-1 bg-white text-black py-4 font-bold uppercase tracking-wide text-sm hover:bg-gray-200 transition-colors rounded-sm shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-h-[56px]"
                             >
-                                Add to Bag
+                                {isAddingToCart ? "Adding..." : "Add to Bag"}
                             </button>
                             <button
                                 onClick={() => toggleWishlist(product.id)}
@@ -184,6 +200,13 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 </div>
             </div>
 
+            {isAddingToCart && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm transition-all duration-300">
+                    <div className="w-40 h-40 bg-white rounded-full flex items-center justify-center shadow-2xl p-4">
+                        <Lottie animationData={loadingAnimation} loop={true} />
+                    </div>
+                </div>
+            )}
             <Footer />
         </main>
     );

@@ -9,6 +9,8 @@ import ProductCard from "@/components/ProductCard";
 
 import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense, useState, useEffect } from "react";
+import Lottie from "lottie-react";
+import loadingAnimation from "@/animations/loading.json";
 
 function ShopContent() {
     const searchParams = useSearchParams();
@@ -19,17 +21,25 @@ function ShopContent() {
     const [products, setProducts] = useState<Product[]>([]);
     const [isSortOpen, setIsSortOpen] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function fetchProducts() {
             try {
-                const res = await fetch('/api/products');
+                // Fetch products and wait for at least 2 seconds for the animation to show
+                const [res] = await Promise.all([
+                    fetch('/api/products'),
+                    new Promise(resolve => setTimeout(resolve, 500))
+                ]);
+
                 if (res.ok) {
                     const data = await res.json();
                     setProducts(data);
                 }
             } catch (error) {
                 console.error("Failed to fetch products", error);
+            } finally {
+                setIsLoading(false);
             }
         }
         fetchProducts();
@@ -90,7 +100,7 @@ function ShopContent() {
     return (
         <div onClick={() => { setIsSortOpen(false); setIsFilterOpen(false); }}>
             {/* Header */}
-            <div className="pt-32 pb-12 text-center">
+            <div className="pt-32  text-center">
                 <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-[var(--foreground)] capitalize">
                     {category || "Shop All"}
                 </h1>
@@ -159,7 +169,14 @@ function ShopContent() {
 
             {/* Grid */}
             <div className="max-w-screen-2xl mx-auto px-6 py-12">
-                {productList.length > 0 ? (
+                {isLoading ? (
+                    <div className="flex justify-center items-center py-40">
+                        {/* Lottie Animation */}
+                        <div className="w-100 h-100">
+                            <Lottie animationData={loadingAnimation} loop={true} />
+                        </div>
+                    </div>
+                ) : productList.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 gap-y-12">
                         {productList.map((product) => (
                             <ProductCard key={product.id} product={product} />

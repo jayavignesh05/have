@@ -8,6 +8,7 @@ import SearchOverlay from "@/components/SearchOverlay";
 import WishlistDrawer from "@/components/WishlistDrawer";
 import Navbar from "@/components/Navbar";
 
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],

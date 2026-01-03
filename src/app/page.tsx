@@ -9,7 +9,7 @@ import FeaturedSplit from "@/components/FeaturedSplit";
 import InstagramFeed from "@/components/InstagramFeed";
 import Footer from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
-import ScrollingMarquee from "@/components/ScrollingMarquee";
+
 import ModernFashionHeroSlider from "@/components/ModernFashionHeroSlider";
 
 import ValueProps from "@/components/ValueProps";
@@ -81,7 +81,7 @@ export default function Home() {
           style={{ y, scale, opacity }}
           className="w-full h-full flex flex-col origin-top"
         >
-          <ScrollingMarquee />
+
           <div className="flex-1 relative">
             <ModernFashionHeroSlider />
           </div>
