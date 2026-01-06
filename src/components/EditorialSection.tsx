@@ -4,8 +4,8 @@ export default function EditorialSection() {
     return (
         <section className="w-full bg-white">
             {/* Section 1: Blurry Motion - Full Width or Split */}
-            <div className="grid h-screen w-full grid-cols-1 md:grid-cols-12 md:h-[80vh]">
-                <div className="relative bg-gray-200 md:col-span-8">
+            <div className="grid min-h-screen md:min-h-0 md:h-[80vh] w-full grid-cols-1 md:grid-cols-12">
+                <div className="relative h-[50vh] md:h-auto bg-gray-200 md:col-span-8">
                     <Image
                         src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200&auto=format&fit=crop"
                         alt="Motion Blur Editorial"
@@ -13,7 +13,7 @@ export default function EditorialSection() {
                         className="object-cover"
                     />
                 </div>
-                <div className="flex flex-col justify-center bg-zinc-900 p-12 text-white md:col-span-4">
+                <div className="flex flex-col justify-center bg-zinc-900 p-6 md:p-12 text-white md:col-span-4">
                     <h2 className="mb-6 text-4xl font-bold leading-none md:text-6xl">
                         MOVE <br /> DIFFERENT.
                     </h2>

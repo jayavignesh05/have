@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function BlogSection() {
     return (
-        <section className="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+        <section className="max-w-7xl mx-auto px-4 py-12 md:py-20 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
                 <h2 className="text-3xl font-serif font-bold text-gray-900 dark:text-white mb-2">The Véon Edit Fashion Style</h2>
                 <p className="text-sm text-gray-500 mb-6">Your go-to destination for trends, tips, and timeless style inspiration.</p>
@@ -13,7 +13,7 @@ export default function BlogSection() {
                     <div className="md:w-3/5 h-96 md:h-auto">
                         <img alt="Main blog post" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVAXyZ9_c924PVDaudQiyBrIYtP_tO9GM3k9pbFdQC5HFfWDMMs7G-qCl-V65_LESCWmL_78dKKxmjc946XOlOh440xEmUJxuW2KBZzl_IimgWQjUfm5twQZcHFCoHM_0jTcHpmee0h5U8i4U2zZUReDw9xkl0EbtxwGO11NmBFnRue4E1Z09TiCTZ53s2TY2egOp-HBzs13vL8cmS_mi_I1rDFjH5XuY979fWJ94nb7xeEYQYX8x9dCvzV0q4Bpw_l7TS-2p1-_kH" />
                     </div>
-                    <div className="md:w-2/5 p-10 flex flex-col justify-center">
+                    <div className="md:w-2/5 p-6 md:p-10 flex flex-col justify-center">
                         <span className="text-xs text-gray-500 uppercase mb-2">Fashion Tips</span>
                         <h3 className="text-2xl font-serif font-bold text-gray-900 dark:text-white mb-4">Dressing for Your Body Type: Find the Perfect Fit with Véon</h3>
                         <div className="mt-auto flex items-center gap-4 text-xs text-gray-500">

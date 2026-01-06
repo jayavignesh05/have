@@ -61,7 +61,7 @@ export default function ModernFashionHeroSlider() {
     };
 
     return (
-        <section className="relative h-screen w-full overflow-hidden bg-black font-sans transition-all duration-500">
+        <section className="relative h-[100dvh] w-full overflow-hidden bg-black font-sans transition-all duration-500">
 
 
             {/* 2. Slider Logic - Background Layer */}
@@ -92,7 +92,7 @@ export default function ModernFashionHeroSlider() {
                 initial={!hasHomeLoaded ? { opacity: 0, filter: "blur(10px)" } : { opacity: 1, filter: "blur(0px)" }}
                 animate={{ opacity: 1, filter: "blur(0px)" }}
                 transition={!hasHomeLoaded ? { duration: 1, delay: 0.2 } : { duration: 0 }}
-                className="relative h-full flex flex-col justify-end pb-12 px-6 md:px-12 max-w-screen-2xl mx-auto z-10"
+                className="relative h-full flex flex-col justify-end pb-24 md:pb-12 px-4 md:px-12 max-w-screen-2xl mx-auto z-10"
             >
 
                 {/* Headlines (Large, Left Aligned) */}
@@ -112,8 +112,8 @@ export default function ModernFashionHeroSlider() {
                     </AnimatePresence>
                 </div>
 
-                <div className="flex flex-col md:flex-row items-center justify-between gap-12 w-full mb-10">
-                    <div className="flex items-end gap-6">
+                <div className="flex flex-col-reverse md:flex-row items-end md:items-center justify-between gap-8 md:gap-12 w-full mb-10">
+                    <div className="flex items-end gap-4 md:gap-6 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 no-scrollbar">
                         {slides.map((slide, index) => (
                             <button
                                 key={slide.id}
@@ -132,7 +132,7 @@ export default function ModernFashionHeroSlider() {
 
                                 {/* 2. The Thumbnail Image */}
                                 <div
-                                    className={`relative w-32 h-20 rounded-lg overflow-hidden transition-all duration-100 ease-out ${activeIndex === index
+                                    className={`relative w-24 md:w-32 h-16 md:h-20 rounded-lg overflow-hidden transition-all duration-100 ease-out flex-shrink-0 ${activeIndex === index
                                         ? " opacity-100 scale-110"
                                         : "opacity-100 hover:opacity-100 hover:scale-105 grayscale hover:grayscale-0"
                                         }`}

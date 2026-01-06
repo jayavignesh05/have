@@ -99,7 +99,7 @@ function ShopContent() {
     return (
         <div onClick={() => { setIsSortOpen(false); setIsFilterOpen(false); }}>
             {/* Header */}
-            <div className="pt-32  text-center">
+            <div className="pt-32 text-center">
                 <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-[var(--foreground)] capitalize">
                     {category || "Shop All"}
                 </h1>
@@ -113,7 +113,7 @@ function ShopContent() {
 
             {/* Toolbar */}
             <div className="sticky top-[72px] z-30 bg-[var(--background)]/90 backdrop-blur-md border-b border-gray-800">
-                <div className="max-w-screen-2xl mx-auto px-6 py-4 flex justify-between items-center text-sm text-[var(--foreground)] opacity-90 relative">
+                <div className="max-w-screen-2xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center text-sm text-[var(--foreground)] opacity-90 relative">
                     <span className="opacity-70">{productList.length} Products</span>
 
                     <div className="flex gap-6 relative">
@@ -167,9 +167,9 @@ function ShopContent() {
             </div>
 
             {/* Grid */}
-            <div className="max-w-screen-2xl mx-auto px-6 py-12">
+            <div className="max-w-screen-2xl mx-auto px-4 md:px-6 py-8 md:py-12">
                 {isLoading ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 gap-y-12">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-8 md:gap-6 md:gap-y-12">
                         {Array.from({ length: 8 }).map((_, i) => (
                             <div key={i} className="flex flex-col gap-4">
                                 <div className="aspect-[3/4] w-full rounded-sm overflow-hidden text-gray-200 dark:text-gray-800">
@@ -180,7 +180,7 @@ function ShopContent() {
                         ))}
                     </div>
                 ) : productList.length > 0 ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 gap-y-12">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-8 md:gap-6 md:gap-y-12">
                         {productList.map((product) => (
                             <ProductCard key={product.id} product={product} />
                         ))}

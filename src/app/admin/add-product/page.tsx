@@ -134,7 +134,7 @@ export default function AddProductPage() {
     return (
         <div className="min-h-screen bg-[#F8F8F8] text-black font-sans selection:bg-black selection:text-white">
             {/* Navbar / Header Area */}
-            <div className="w-full bg-white border-b border-neutral-200 px-6 py-4 flex items-center justify-between sticky top-0 z-50">
+            <div className="w-full bg-white border-b border-neutral-200 px-4 md:px-6 py-4 flex items-center justify-between sticky top-0 z-50">
                 <div className="flex items-center gap-4">
                     <Link
                         href="/admin"
@@ -152,12 +152,12 @@ export default function AddProductPage() {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto p-6 lg:p-12">
+            <div className="max-w-7xl mx-auto p-4 md:p-6 lg:p-12">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="grid grid-cols-1 lg:grid-cols-12 gap-12"
+                    className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12"
                 >
                     {/* LEFT COLUMN: Header & Context */}
                     <div className="lg:col-span-4 space-y-6">
@@ -170,7 +170,7 @@ export default function AddProductPage() {
                             </p>
                         </div>
 
-                        <div className="p-6 bg-white border border-neutral-100 rounded-lg shadow-sm">
+                        <div className="p-5 md:p-6 bg-white border border-neutral-100 rounded-lg shadow-sm">
                             <h3 className="font-semibold mb-2 flex items-center gap-2">
                                 <Tag className="w-4 h-4" /> Pro Tip
                             </h3>
@@ -184,7 +184,7 @@ export default function AddProductPage() {
                     <div className="lg:col-span-8">
                         <form
                             onSubmit={handleSubmit}
-                            className="bg-white p-6 md:p-8 rounded-2xl shadow-[0_2px_40px_-12px_rgba(0,0,0,0.1)] border border-neutral-100 space-y-8"
+                            className="bg-white p-5 md:p-8 rounded-2xl shadow-[0_2px_40px_-12px_rgba(0,0,0,0.1)] border border-neutral-100 space-y-6 md:space-y-8"
                         >
 
                             {/* Product Name */}
@@ -218,7 +218,7 @@ export default function AddProductPage() {
                                 />
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
                                 {/* Price */}
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-wider text-neutral-500">
@@ -438,17 +438,17 @@ export default function AddProductPage() {
                             </div>
 
                             {/* Actions */}
-                            <div className="pt-6 flex items-center justify-end gap-4">
+                            <div className="pt-6 flex flex-col-reverse sm:flex-row items-center justify-end gap-4">
                                 <button
                                     type="button"
-                                    className="px-6 py-3 text-sm font-bold uppercase tracking-widest hover:text-neutral-600 transition-colors"
+                                    className="w-full sm:w-auto px-6 py-3 text-sm font-bold uppercase tracking-widest hover:text-neutral-600 transition-colors text-center"
                                 >
                                     Clear
                                 </button>
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="bg-black text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-sm flex items-center gap-2 disabled:opacity-70 disabled:hover:scale-100"
+                                    className="w-full sm:w-auto bg-black text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-sm flex items-center justify-center gap-2 disabled:opacity-70 disabled:hover:scale-100"
                                 >
                                     {loading ? "Publishing..." : (
                                         <>

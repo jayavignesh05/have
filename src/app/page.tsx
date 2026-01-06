@@ -102,7 +102,7 @@ export default function Home() {
         <div className="bg-white">
 
           <Reveal delay={0.1}>
-            <div className="max-w-screen-2xl mx-auto px-6 py-24">
+            <div className="max-w-screen-2xl mx-auto px-4 py-12 md:px-6 md:py-24">
               <div className="flex justify-between items-end mb-16">
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Best Sellers</h2>
                 <a href="/shop" className="text-xs font-bold uppercase tracking-[0.3em] border-b border-black pb-1 hover:opacity-60 transition-opacity">View all</a>
@@ -116,7 +116,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="max-w-screen-2xl mx-auto px-6 py-24 bg-neutral-50/50">
+            <div className="max-w-screen-2xl mx-auto px-4 py-12 md:px-6 md:py-24 bg-neutral-50/50">
               <div className="flex justify-between items-end mb-16">
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight">New In</h2>
                 <a href="/shop" className="text-xs font-bold uppercase tracking-[0.3em] border-b border-black pb-1 hover:opacity-60 transition-opacity">View all</a>
@@ -150,7 +150,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="py-24">
+            <div className="py-12 md:py-24">
               <InstagramFeed />
             </div>
           </Reveal>

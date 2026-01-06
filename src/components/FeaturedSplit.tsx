@@ -6,9 +6,9 @@ import Image from "next/image";
 
 export default function FeaturedSplit() {
     return (
-        <section className="bg-neutral-50 px-6 py-24 md:py-32 overflow-hidden">
+        <section className="bg-neutral-50 px-4 py-12 md:px-6 md:py-32 overflow-hidden">
             <div className="max-w-screen-2xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 items-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center">
 
                     {/* Left: Content */}
                     <div className="order-2 md:order-1">
@@ -25,7 +25,7 @@ export default function FeaturedSplit() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="text-4xl md:text-6xl font-bold mb-8 text-black leading-tight tracking-tight"
+                            className="text-3xl md:text-6xl font-bold mb-8 text-black leading-tight tracking-tight"
                         >
                             Premium Design <br />
                             and Quality
@@ -62,7 +62,7 @@ export default function FeaturedSplit() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.4 }}
-                            className="group relative overflow-hidden bg-black text-white px-10 py-5 text-xs font-bold uppercase tracking-widest transition-all"
+                            className="group relative overflow-hidden bg-black text-white px-10 py-5 text-xs font-bold uppercase tracking-widest transition-all w-full md:w-auto"
                         >
                             <span className="relative z-10 transition-colors group-hover:text-black">Read Our Story</span>
                             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300" />

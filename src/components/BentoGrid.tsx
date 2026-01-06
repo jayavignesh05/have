@@ -45,12 +45,12 @@ const categories = [
 
 export default function BentoGrid() {
     return (
-        <section className="max-w-screen-2xl mx-auto px-6 py-24">
-            <div className="flex justify-between items-end mb-16">
-                <h2 className="text-4xl font-bold tracking-tight">Shop by Category</h2>
+        <section className="max-w-screen-2xl mx-auto px-4 py-12 md:px-6 md:py-24">
+            <div className="flex justify-between items-end mb-8 md:mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Shop by Category</h2>
                 <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400">Curated Collections</span>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[240px]">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[240px]">
                 {categories.map((item, index) => (
                     <Link
                         key={item.id}

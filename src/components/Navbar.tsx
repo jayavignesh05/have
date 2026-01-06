@@ -5,11 +5,13 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useShop } from "@/context/ShopContext";
 import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 import ScrollingMarquee from "./ScrollingMarquee";
 
 export default function Navbar() {
     const { cart, toggleCart, toggleSearch, toggleWishlistDrawer } = useShop();
     const [isShopHovered, setIsShopHovered] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const pathname = usePathname();
 
@@ -36,40 +38,50 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 0, filter: "blur(10px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                className="bg-white/40 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/5 transition-all duration-300 relative mx-auto w-[95%] max-w-5xl rounded-2xl mt-2"
+                className="bg-white/40 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/5 transition-all duration-300 relative mx-auto w-[95%] max-w-5xl rounded-2xl mt-2 flex flex-col md:block"
             >
-                <div className="px-8 py-4 md:py-3 flex justify-between items-center relative z-20">
+                <div className="px-4 py-3 md:px-8 md:py-3 flex justify-between items-center relative z-20">
 
                     {/* Logo - Left Aligned */}
                     <div className="flex-shrink-0">
-                        <Link href="/" className="font-sans text-2xl font-bold tracking-[0.2em] uppercase text-gray-900 dark:text-gray-100">
+                        <Link href="/" className="font-sans text-xl md:text-2xl font-bold tracking-[0.2em] uppercase text-gray-900 dark:text-gray-100">
                             HAVE
                         </Link>
                     </div>
 
-                    {/* Combined Menu (Links + Actions) - Right Aligned */}
-                    <div className="flex items-center gap-8 md:gap-12 text-sm font-medium tracking-wide text-gray-800 dark:text-gray-200">
+                    {/* Mobile Menu Toggle - Right Aligned (Mobile Only) */}
+                    <div className="md:hidden">
+                        <button
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="p-2 text-gray-900 dark:text-white focus:outline-none"
+                        >
+                            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                    </div>
 
-                        {/* Navigation Links - Center-Right */}
-                        <div className="hidden md:flex gap-10 items-center">
+                    {/* Desktop Menu (Links + Actions) - Right Aligned */}
+                    <div className="hidden md:flex items-center gap-12 text-sm font-medium tracking-wide text-gray-800 dark:text-gray-200">
+
+                        {/* Navigation Links */}
+                        <div className="flex gap-10 items-center">
                             <div
                                 onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}
                             >
                                 <Link
                                     href="/shop"
-                                    className={`transition-colors  hover:text-black dark:hover:text-white uppercase tracking-widest text-[11px] font-bold ${isShopHovered ? "opacity-100" : "opacity-70"}`}
+                                    className={`transition-colors hover:text-black dark:hover:text-white uppercase tracking-widest text-[11px] font-bold ${isShopHovered ? "opacity-100" : "opacity-70"}`}
                                 >
                                     Shop
                                 </Link>
                             </div>
-                            <Link href="/about" className="hover:text-black dark:hover:text-white transition-colors py-2 uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">About</Link>
-                            <Link href="/blogs" className="hover:text-black dark:hover:text-white transition-colors py-2 uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">Blogs</Link>
-                            <Link href="/contact" className="hover:text-black dark:hover:text-white transition-colors py-2 uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">Contact</Link>
+                            <Link href="/about" className="hover:text-black dark:hover:text-white transition-colors uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">About</Link>
+                            <Link href="/blogs" className="hover:text-black dark:hover:text-white transition-colors uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">Blogs</Link>
+                            <Link href="/contact" className="hover:text-black dark:hover:text-white transition-colors uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">Contact</Link>
                         </div>
 
-                        {/* Actions - Far Right */}
-                        <div className="flex items-center gap-6 md:gap-8">
+                        {/* Actions */}
+                        <div className="flex items-center gap-8">
                             <button onClick={toggleWishlistDrawer} className="hover:text-black dark:hover:text-white transition-colors uppercase tracking-widest text-[11px] font-bold opacity-70 hover:opacity-100">
                                 Favorites
                             </button>
@@ -84,6 +96,42 @@ export default function Navbar() {
                         </div>
                     </div>
                 </div>
+
+                {/* Mobile Menu Dropdown */}
+                <AnimatePresence>
+                    {isMobileMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="md:hidden overflow-hidden border-t border-gray-100 dark:border-gray-800 bg-white/50 dark:bg-black/50 backdrop-blur-xl"
+                        >
+                            <div className="p-6 flex flex-col gap-6 text-sm font-medium tracking-wide text-gray-800 dark:text-gray-200">
+                                {/* Navigation Links */}
+                                <div className="flex flex-col gap-4">
+                                    <Link href="/shop" onClick={() => setIsMobileMenuOpen(false)} className="uppercase tracking-widest text-xs font-bold py-2 border-b border-gray-200 dark:border-gray-700">Shop</Link>
+                                    <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="uppercase tracking-widest text-xs font-bold py-2 border-b border-gray-200 dark:border-gray-700">About</Link>
+                                    <Link href="/blogs" onClick={() => setIsMobileMenuOpen(false)} className="uppercase tracking-widest text-xs font-bold py-2 border-b border-gray-200 dark:border-gray-700">Blogs</Link>
+                                    <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="uppercase tracking-widest text-xs font-bold py-2 border-b border-gray-200 dark:border-gray-700">Contact</Link>
+                                </div>
+
+                                {/* Actions */}
+                                <div className="flex flex-col gap-4 mt-2">
+                                    <button onClick={() => { toggleWishlistDrawer(); setIsMobileMenuOpen(false); }} className="text-left uppercase tracking-widest text-xs font-bold py-2 flex items-center gap-2">
+                                        Favorites
+                                    </button>
+                                    <button onClick={() => { toggleSearch(); setIsMobileMenuOpen(false); }} className="text-left uppercase tracking-widest text-xs font-bold py-2 flex items-center gap-2">
+                                        Search
+                                    </button>
+                                    <button onClick={() => { toggleCart(); setIsMobileMenuOpen(false); }} className="text-left uppercase tracking-widest text-xs font-bold py-2 flex items-center gap-2">
+                                        Bag <span className="opacity-50 font-normal">({cart.length})</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 {/* Mega Menu Overlay */}
                 <AnimatePresence>

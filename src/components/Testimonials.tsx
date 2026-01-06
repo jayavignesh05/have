@@ -32,7 +32,7 @@ const testimonials = [
 
 export default function Testimonials() {
     return (
-        <section className="bg-neutral-50 py-24 px-6 overflow-hidden">
+        <section className="bg-neutral-50 py-12 px-4 md:py-24 md:px-6 overflow-hidden">
             <div className="max-w-screen-2xl mx-auto">
                 <div className="text-center mb-16">
                     <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 block">Feedback</span>
@@ -46,7 +46,7 @@ export default function Testimonials() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-white p-12 flex flex-col items-center text-center rounded-sm border border-neutral-100"
+                            className="bg-white p-6 md:p-12 flex flex-col items-center text-center rounded-sm border border-neutral-100"
                         >
                             <div className="relative w-16 h-16 rounded-full overflow-hidden mb-8 grayscale">
                                 <Image src={t.avatar} alt={t.author} fill className="object-cover" />

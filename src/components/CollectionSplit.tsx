@@ -4,7 +4,7 @@ export default function CollectionSplit() {
     return (
         <section className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 space-y-24">
             <div className="flex flex-col md:flex-row items-center bg-secondary-light dark:bg-secondary-dark rounded-xl overflow-hidden">
-                <div className="w-full md:w-1/2 p-12 lg:p-24 flex flex-col justify-center items-center text-center">
+                <div className="w-full md:w-1/2 p-6 md:p-12 lg:p-24 flex flex-col justify-center items-center text-center">
                     <span className="text-xs uppercase tracking-widest text-gray-500 mb-4">New In Dresses</span>
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 dark:text-white mb-6">Elevate Your Style</h2>
                     <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-sm">Discover sophisticated silhouettes and luxurious fabrics, designed for timeless style.</p>
@@ -15,7 +15,7 @@ export default function CollectionSplit() {
                 </div>
             </div>
             <div className="flex flex-col md:flex-row-reverse items-center bg-secondary-light dark:bg-secondary-dark rounded-xl overflow-hidden">
-                <div className="w-full md:w-1/2 p-12 lg:p-24 flex flex-col justify-center items-center text-center">
+                <div className="w-full md:w-1/2 p-6 md:p-12 lg:p-24 flex flex-col justify-center items-center text-center">
                     <span className="text-xs uppercase tracking-widest text-gray-500 mb-4">New In Shirts</span>
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 dark:text-white mb-6">Redefine Casual Comfort</h2>
                     <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-sm">Experience premium fabrics and modern fits, designed for effortless everyday style.</p>
