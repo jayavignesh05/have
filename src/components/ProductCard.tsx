@@ -43,8 +43,8 @@ export default function ProductCard({ product }: { product: Product }) {
                     <Heart size={16} fill={isLiked ? "currentColor" : "none"} strokeWidth={2} />
                 </button>
 
-                {/* Quick Add Button Overlay */}
-                <div className="absolute inset-x-0 bottom-6 px-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 flex justify-center pointer-events-none group-hover:pointer-events-auto">
+                {/* Quick Add Button Overlay - Desktop Only */}
+                <div className="absolute inset-x-0 bottom-6 px-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 hidden md:flex justify-center pointer-events-none group-hover:pointer-events-auto">
                     <button
                         onClick={(e) => {
                             e.preventDefault();
@@ -55,6 +55,17 @@ export default function ProductCard({ product }: { product: Product }) {
                         <Plus size={14} /> Add to Bag
                     </button>
                 </div>
+                {/* Mobile Add to Cart Icon - Left Side */}
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        addToCart(product);
+                    }}
+                    className="md:hidden absolute bottom-3 left-3 bg-white text-black p-2.5 rounded-full shadow-md z-20 active:scale-90 transition-all flex items-center justify-center opacity-90 hover:opacity-100"
+                    aria-label="Add to cart"
+                >
+                    <Plus size={18} strokeWidth={2} />
+                </button>
             </div>
 
             <div className="mt-6 flex flex-col items-start px-1">
