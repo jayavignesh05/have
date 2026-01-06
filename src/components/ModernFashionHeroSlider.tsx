@@ -92,7 +92,7 @@ export default function ModernFashionHeroSlider() {
                 initial={!hasHomeLoaded ? { opacity: 0, filter: "blur(10px)" } : { opacity: 1, filter: "blur(0px)" }}
                 animate={{ opacity: 1, filter: "blur(0px)" }}
                 transition={!hasHomeLoaded ? { duration: 1, delay: 0.2 } : { duration: 0 }}
-                className="relative h-full flex flex-col justify-end pb-24 md:pb-12 px-4 md:px-12 max-w-screen-2xl mx-auto z-10"
+                className="relative h-full flex flex-col justify-end pb-2 md:pb-12 px-4 md:px-12 max-w-screen-2xl mx-auto z-10"
             >
 
                 {/* Headlines (Large, Left Aligned) */}
