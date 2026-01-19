@@ -14,9 +14,7 @@ import ModernFashionHeroSlider from "@/components/ModernFashionHeroSlider";
 
 import ValueProps from "@/components/ValueProps";
 import Testimonials from "@/components/Testimonials";
-import EditorialSection from "@/components/EditorialSection";
-import BlogSection from "@/components/BlogSection";
-import StorySection from "@/components/StorySection";
+
 import CollectionSplit from "@/components/CollectionSplit";
 
 
@@ -110,11 +108,6 @@ export default function Home() {
               <ProductGrid title="" products={bestSellers.slice(0, 4)} />
             </div>
           </Reveal>
-
-          <Reveal delay={0.1}>
-            <EditorialSection />
-          </Reveal>
-
           <Reveal delay={0.1}>
             <div className="max-w-screen-2xl mx-auto px-4 py-12 md:px-6 md:py-24 bg-neutral-50/50">
               <div className="flex justify-between items-end mb-16">
@@ -137,17 +130,13 @@ export default function Home() {
             <Testimonials />
           </Reveal>
 
-          <Reveal delay={0.1}>
-            <StorySection />
-          </Reveal>
+
 
           <Reveal delay={0.1}>
             <ValueProps />
           </Reveal>
 
-          <Reveal delay={0.1}>
-            <BlogSection />
-          </Reveal>
+
 
           <Reveal delay={0.1}>
             <div className="py-12 md:py-24">

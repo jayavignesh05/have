@@ -31,33 +31,63 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+    // Duplicate testimonials for seamless looping (4 sets to ensure 50% move is seamless and covers wide screens)
+    const displayTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials];
+
     return (
-        <section className="bg-neutral-50 py-12 px-4 md:py-24 md:px-6 overflow-hidden">
-            <div className="max-w-screen-2xl mx-auto">
-                <div className="text-center mb-16">
+        <section className="bg-neutral-50 py-12 md:py-24 overflow-hidden relative">
+            <div className="max-w-full">
+                <div className="text-center mb-16 px-4">
                     <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 block">Feedback</span>
                     <h2 className="text-4xl font-bold tracking-tight text-black">Trusted by Many</h2>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {testimonials.map((t, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="bg-white p-6 md:p-12 flex flex-col items-center text-center rounded-sm border border-neutral-100"
-                        >
-                            <div className="relative w-16 h-16 rounded-full overflow-hidden mb-8 grayscale">
-                                <Image src={t.avatar} alt={t.author} fill className="object-cover" />
+
+                <div
+                    className="relative w-full overflow-hidden"
+                    style={{
+                        maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+                        WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
+                    }}
+                >
+                    <motion.div
+                        className="flex gap-6 w-max"
+                        animate={{
+                            x: ["0%", "-50%"],
+                        }}
+                        transition={{
+                            x: {
+                                repeat: Infinity,
+                                repeatType: "loop",
+                                duration: 30, // Adjusted duration for smooth speed
+                                ease: "linear",
+                            },
+                        }}
+                    >
+                        {displayTestimonials.map((t, index) => (
+                            <div
+                                key={index}
+                                className="w-[350px] md:w-[450px] flex-shrink-0 bg-white p-8 md:p-10 flex flex-col justify-between rounded-xl border border-neutral-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+                            >
+                                <div className="mb-6">
+                                    <div className="flex gap-1 mb-4">
+                                        {[...Array(5)].map((_, i) => (
+                                            <svg key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                                        ))}
+                                    </div>
+                                    <p className="text-lg md:text-xl font-medium text-black leading-relaxed">&quot;{t.quote}&quot;</p>
+                                </div>
+                                <div className="flex items-center gap-4 pt-6 border-t border-neutral-50">
+                                    <div className="relative w-12 h-12 rounded-full overflow-hidden grayscale opacity-80">
+                                        <Image src={t.avatar} alt={t.author} fill className="object-cover" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-sm tracking-tight text-black">{t.author}</h4>
+                                        <p className="text-[10px] text-neutral-400 uppercase tracking-widest">{t.role}</p>
+                                    </div>
+                                </div>
                             </div>
-                            <p className="text-xl md:text-2xl font-medium text-black leading-relaxed">&quot;{t.quote}&quot;</p>
-                            <div>
-                                <h4 className="font-bold text-sm tracking-tight">{t.author}</h4>
-                                <p className="text-[10px] text-neutral-400 uppercase tracking-widest mt-1">{t.role}</p>
-                            </div>
-                        </motion.div>
-                    ))}
+                        ))}
+                    </motion.div>
                 </div>
             </div>
         </section>

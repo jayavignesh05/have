@@ -113,7 +113,7 @@ export default function ModernFashionHeroSlider() {
                 </div>
 
                 <div className="flex flex-col-reverse md:flex-row items-end md:items-center justify-between gap-8 md:gap-12 w-full mb-10">
-                    <div className="flex items-end gap-4 md:gap-6 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 no-scrollbar">
+                    <div className="flex items-end gap-2 md:gap-6 justify-between md:justify-start w-full md:w-auto">
                         {slides.map((slide, index) => (
                             <button
                                 key={slide.id}
@@ -132,7 +132,7 @@ export default function ModernFashionHeroSlider() {
 
                                 {/* 2. The Thumbnail Image */}
                                 <div
-                                    className={`relative w-24 md:w-32 h-16 md:h-20 rounded-lg overflow-hidden transition-all duration-100 ease-out flex-shrink-0 ${activeIndex === index
+                                    className={`relative w-20 md:w-32 h-14 md:h-20 rounded-lg overflow-hidden transition-all duration-100 ease-out flex-shrink-0 ${activeIndex === index
                                         ? " opacity-100 scale-110"
                                         : "opacity-100 hover:opacity-100 hover:scale-105 grayscale hover:grayscale-0"
                                         }`}

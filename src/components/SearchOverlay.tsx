@@ -44,56 +44,78 @@ export default function SearchOverlay() {
     return (
         <AnimatePresence>
             {isSearchOpen && (
-                <div className="fixed inset-0 z-[100] flex items-start justify-center pt-24 sm:pt-40 px-4">
+                <div className="fixed inset-0 z-[100] flex items-start justify-center px-4 sm:px-6 py-8 sm:py-16">
                     {/* Backdrop */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
                         onClick={toggleSearch}
-                        className="absolute inset-0 bg-[#0d0d0d]/95 backdrop-blur-md"
+                        className="absolute inset-0 bg-black/40 backdrop-blur-sm"
                     />
 
                     {/* Modal Content */}
                     <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="relative w-full max-w-4xl z-10 flex flex-col gap-8"
+                        initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative w-full max-w-2xl z-10 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden"
                     >
-                        {/* Header / Input */}
-                        <div className="relative border-b border-white/20 pb-4">
-                            <input
-                                ref={inputRef}
-                                type="text"
-                                placeholder="Search..."
-                                value={query}
-                                onChange={(e) => setQuery(e.target.value)}
-                                className="w-full bg-transparent border-none p-0 text-4xl sm:text-6xl font-bold tracking-tight text-white placeholder:text-white/20 focus:ring-0"
-                            />
-                            <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-4">
-                                <span className="hidden sm:inline-block text-xs font-medium text-white/40 tracking-widest uppercase border border-white/10 px-2 py-1 rounded">ESC to close</span>
+                        {/* Search Input */}
+                        <div className="relative border-b border-gray-200/50 dark:border-gray-700/50">
+                            <div className="flex items-center gap-3 px-6 py-4">
+                                {/* Search Icon */}
+                                <svg
+                                    className="w-5 h-5 text-gray-400 flex-shrink-0"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                    />
+                                </svg>
+
+                                <input
+                                    ref={inputRef}
+                                    type="text"
+                                    placeholder="Search for products..."
+                                    value={query}
+                                    onChange={(e) => setQuery(e.target.value)}
+                                    className="flex-1 bg-transparent border-none outline-none text-lg text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500"
+                                />
+
+                                {/* Close Button */}
                                 <button
                                     onClick={toggleSearch}
-                                    className="p-2 rounded-full hover:bg-white/10 transition-colors text-white/60 hover:text-white"
+                                    className="flex-shrink-0 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                                    aria-label="Close search"
                                 >
-                                    <span className="material-icons text-3xl">close</span>
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
                                 </button>
                             </div>
                         </div>
 
                         {/* Content */}
-                        <div className="min-h-[200px]">
+                        <div className="max-h-[60vh] overflow-y-auto">
                             {query === "" ? (
-                                <div>
-                                    <p className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-6">Trending Now</p>
-                                    <div className="flex flex-wrap gap-3">
+                                <div className="px-6 py-8">
+                                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
+                                        Popular Searches
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
                                         {["Oversized Tee", "Cargo Pants", "Sweatshirt", "Essentials"].map((term) => (
                                             <button
                                                 key={term}
                                                 onClick={() => setQuery(term)}
-                                                className="px-4 py-2 bg-white/5 border border-white/5 hover:border-white/20 rounded-full text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all"
+                                                className="px-4 py-2 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200/60 dark:border-gray-700/60 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 transition-all duration-200 hover:scale-105 active:scale-95"
                                             >
                                                 {term}
                                             </button>
@@ -101,37 +123,65 @@ export default function SearchOverlay() {
                                     </div>
                                 </div>
                             ) : filteredProducts.length > 0 ? (
-                                <div>
-                                    <p className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-6">
-                                        {filteredProducts.length} Result{filteredProducts.length !== 1 && 's'}
-                                    </p>
-                                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div className="py-2">
+                                    <div className="px-6 py-3">
+                                        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                            {filteredProducts.length} Result{filteredProducts.length !== 1 && 's'}
+                                        </p>
+                                    </div>
+                                    <ul className="divide-y divide-gray-100 dark:divide-gray-800">
                                         {filteredProducts.slice(0, 6).map(product => (
                                             <li key={product.id}>
                                                 <Link
                                                     href={`/product/${product.id}`}
                                                     onClick={toggleSearch}
-                                                    className="flex items-center gap-5 p-4 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-all group"
+                                                    className="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group"
                                                 >
-                                                    <div className="w-16 h-20 bg-gray-800 rounded-sm overflow-hidden flex-shrink-0">
-                                                        <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                                    <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden flex-shrink-0">
+                                                        <img
+                                                            src={product.image}
+                                                            alt={product.name}
+                                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                        />
                                                     </div>
-                                                    <div>
-                                                        <h4 className="font-bold text-lg text-white group-hover:text-purple-400 transition-colors line-clamp-1">{product.name}</h4>
-                                                        <p className="text-sm text-gray-400 mt-1">{product.category}</p>
-                                                        <p className="text-sm font-semibold text-white mt-1">{product.price}</p>
+                                                    <div className="flex-1 min-w-0">
+                                                        <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors truncate">
+                                                            {product.name}
+                                                        </h4>
+                                                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+                                                            {product.category}
+                                                        </p>
                                                     </div>
+                                                    <p className="text-sm font-semibold text-gray-900 dark:text-white flex-shrink-0">
+                                                        {product.price}
+                                                    </p>
                                                 </Link>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
                             ) : (
-                                <div className="text-center py-12">
-                                    <p className="text-xl text-white/40">No results found for <span className="text-white">&quot;{query}&quot;</span></p>
-                                    <p className="text-sm text-white/20 mt-2">Try checking for typos or using broader terms.</p>
+                                <div className="px-6 py-16 text-center">
+                                    <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center">
+                                        <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                    </div>
+                                    <p className="text-base font-medium text-gray-900 dark:text-white mb-1">
+                                        No results found
+                                    </p>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                                        Try searching with different keywords
+                                    </p>
                                 </div>
                             )}
+                        </div>
+
+                        {/* Footer Hint */}
+                        <div className="border-t border-gray-200/50 dark:border-gray-700/50 px-6 py-3 bg-gray-50/50 dark:bg-gray-800/30">
+                            <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                                <span>Press <kbd className="px-2 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded font-mono">ESC</kbd> to close</span>
+                            </div>
                         </div>
                     </motion.div>
                 </div>

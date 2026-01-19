@@ -55,7 +55,7 @@ export default function BentoGrid() {
                     <Link
                         key={item.id}
                         href={item.href}
-                        className={`relative group overflow-hidden bg-neutral-100 ${item.className}`}
+                        className={`relative group overflow-hidden bg-neutral-100 rounded-xl ${item.className}`}
                     >
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -73,7 +73,7 @@ export default function BentoGrid() {
                             {/* Overlay */}
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
 
-                            <div className="absolute inset-0 p-8 flex flex-col justify-between">
+                            <div className="absolute inset-0 p-8 flex flex-col justify-between ">
                                 <span className="text-white text-[10px] font-bold tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">{item.span}</span>
                                 <div>
                                     <h3 className="text-white text-2xl font-bold tracking-tight mb-2">{item.title}</h3>
