@@ -13,13 +13,14 @@ export default function ProductCard({ product }: { product: Product }) {
     return (
         <div className="group relative">
             <div className="aspect-[3/4] w-full overflow-hidden bg-neutral-100 relative mb-4">
-                <Link href={`/product/${product.id}`} className="block w-full h-full">
+                <Link href={`/product/${product.id}`} className="relative block w-full h-full">
                     <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
+                         src={product.image}
+                         alt={product.name}
+                         fill
+                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                         className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                     />
                 </Link>
 
                 {/* Badges */}

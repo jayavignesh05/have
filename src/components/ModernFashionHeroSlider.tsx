@@ -79,6 +79,7 @@ export default function ModernFashionHeroSlider() {
                             src={slides[activeIndex].image}
                             alt="Hero Background"
                             fill
+                            sizes="100vw"
                             className="object-cover object-top md:object-center brightness-100 transition-all duration-1000"
                             priority
                         />

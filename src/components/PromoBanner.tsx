@@ -56,6 +56,7 @@ export default function PromoBanner() {
                             src="https://images.unsplash.com/photo-1492446845049-9c50cc313f00?q=80&w=2000&auto=format&fit=crop"
                             alt="Midnight Collection"
                             fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
                             className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-black/10" />

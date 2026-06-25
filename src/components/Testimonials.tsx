@@ -78,7 +78,7 @@ export default function Testimonials() {
                                 </div>
                                 <div className="flex items-center gap-4 pt-6 border-t border-neutral-50">
                                     <div className="relative w-12 h-12 rounded-full overflow-hidden grayscale opacity-80">
-                                        <Image src={t.avatar} alt={t.author} fill className="object-cover" />
+                                        <Image src={t.avatar} alt={t.author} fill sizes="48px" className="object-cover" />
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-sm tracking-tight text-black">{t.author}</h4>

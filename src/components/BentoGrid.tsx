@@ -52,22 +52,23 @@ export default function BentoGrid() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[240px]">
                 {categories.map((item, index) => (
-                    <Link
+                    <motion.div
                         key={item.id}
-                        href={item.href}
-                        className={`relative group overflow-hidden bg-neutral-100 rounded-xl ${item.className}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                        className={`relative w-full h-full min-h-[200px] ${item.className}`}
                     >
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            className="w-full h-full relative"
+                        <Link
+                            href={item.href}
+                            className="absolute inset-0 group overflow-hidden bg-neutral-100 rounded-xl block"
                         >
                             <Image
                                 src={item.image}
                                 alt={item.title}
                                 fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 className="object-cover group-hover:scale-105 transition-transform duration-1000"
                             />
                             {/* Overlay */}
@@ -82,8 +83,8 @@ export default function BentoGrid() {
                                     </p>
                                 </div>
                             </div>
-                        </motion.div>
-                    </Link>
+                        </Link>
+                    </motion.div>
                 ))}
             </div>
         </section>

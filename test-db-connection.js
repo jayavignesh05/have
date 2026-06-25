@@ -21,8 +21,8 @@ async function checkDb() {
         const connection = await pool.getConnection();
         console.log("✅ Connection Successful!");
 
-        const [rows] = await connection.query("SHOW TABLES");
-        console.log("Tables found:", rows.map(r => Object.values(r)[0]));
+        const [rows] = await connection.query("SELECT user, host FROM mysql.user");
+        console.log("Users and hosts:", rows);
 
         connection.release();
         process.exit(0);

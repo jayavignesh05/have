@@ -21,6 +21,7 @@ export default function InstagramFeed() {
                         <Image
                             alt={`Instagram ${i + 1}`}
                             fill
+                            sizes="(max-width: 768px) 50vw, 20vw"
                             className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                             src={img}
                         />

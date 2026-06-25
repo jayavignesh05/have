@@ -81,6 +81,7 @@ export default function FeaturedSplit() {
                             src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=2000&auto=format&fit=crop"
                             alt="Premium Quality"
                             fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
                             className="object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000"
                         />
                     </motion.div>

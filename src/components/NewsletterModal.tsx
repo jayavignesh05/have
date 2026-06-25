@@ -49,6 +49,7 @@ export default function NewsletterModal() {
                             src="https://images.unsplash.com/photo-1549439602-43ebca2327af?q=80&w=2070&auto=format&fit=crop"
                             alt="Newsletter"
                             fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
                             className="object-cover grayscale"
                         />
                     </div>

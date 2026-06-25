@@ -54,6 +54,7 @@ export default function HeroSection() {
                         src={slides[activeIndex].image}
                         alt="Hero Background"
                         fill
+                        sizes="100vw"
                         className="object-cover object-center brightness-[0.85]"
                         priority
                     />
@@ -107,6 +108,7 @@ export default function HeroSection() {
                                         src={slide.thumbnail}
                                         alt="Thumbnail"
                                         fill
+                                        sizes="128px"
                                         className="object-cover"
                                     />
                                 </motion.div>
