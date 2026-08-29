@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useShop } from "@/context/ShopContext";
-import { Product } from "@/data/products";
+import { Product, products as fallbackProducts } from "@/data/products";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
@@ -10,16 +10,28 @@ export default function SearchOverlay() {
     const { isSearchOpen, toggleSearch } = useShop();
     const [query, setQuery] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<Product[]>(fallbackProducts);
 
     useEffect(() => {
-        if (isSearchOpen && products.length === 0) {
+        if (isSearchOpen) {
             fetch('/api/products')
-                .then(res => res.json())
-                .then(data => setProducts(data))
-                .catch(err => console.error(err));
+                .then(res => {
+                    if (!res.ok) throw new Error("API error");
+                    return res.json();
+                })
+                .then(data => {
+                    if (Array.isArray(data) && data.length > 0) {
+                        setProducts(data);
+                    } else if (fallbackProducts && fallbackProducts.length > 0) {
+                        setProducts(fallbackProducts);
+                    }
+                })
+                .catch(err => {
+                    console.error("Failed to fetch products from API, using fallback data:", err);
+                    setProducts(fallbackProducts);
+                });
         }
-    }, [isSearchOpen, products.length]);
+    }, [isSearchOpen]);
 
     // Focus input when opened
     useEffect(() => {
@@ -37,9 +49,10 @@ export default function SearchOverlay() {
         return () => window.removeEventListener("keydown", handleEsc);
     }, [isSearchOpen, toggleSearch]);
 
+    const safeProducts = Array.isArray(products) ? products : fallbackProducts;
     const filteredProducts = query === ""
         ? []
-        : products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
+        : safeProducts.filter(p => p && p.name && p.name.toLowerCase().includes(query.toLowerCase()));
 
     return (
         <AnimatePresence>

@@ -57,9 +57,19 @@ export default function NewsletterModal() {
                     {/* Right: Content */}
                     <div className="w-full md:w-1/2 p-12 flex flex-col justify-center text-center md:text-left">
                         <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 block">Newsletter</span>
-                        <h2 className="text-3xl md:text-5xl font-bold text-black mb-6 leading-tight tracking-tight">
-                            Join the <br /> HAVE Club.
-                        </h2>
+                        <div className="mb-6 text-3xl md:text-5xl font-bold text-black leading-tight tracking-tight">
+                            <span>Join the </span>
+                            <div className="inline-flex items-center align-middle mx-1">
+                                <Image
+                                    src="/images/logo/havelogoblack.png"
+                                    alt="HAVE"
+                                    width={140}
+                                    height={45}
+                                    className="h-8 md:h-10 w-auto object-contain"
+                                />
+                            </div>
+                            <span> Club.</span>
+                        </div>
                         <p className="text-neutral-500 text-sm mb-8 leading-relaxed">
                             Be the first to know about new arrivals, exclusive events and special offers.
                         </p>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Product } from "@/data/products";
+import { Product, products as fallbackProducts } from "@/data/products";
 
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
@@ -17,7 +17,7 @@ function ShopContent() {
     const category = searchParams.get("category");
     const sort = searchParams.get("sort");
 
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<Product[]>(fallbackProducts);
     const [isSortOpen, setIsSortOpen] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -33,10 +33,17 @@ function ShopContent() {
 
                 if (res.ok) {
                     const data = await res.json();
-                    setProducts(data);
+                    if (Array.isArray(data) && data.length > 0) {
+                        setProducts(data);
+                    } else {
+                        setProducts(fallbackProducts);
+                    }
+                } else {
+                    setProducts(fallbackProducts);
                 }
             } catch (error) {
                 console.error("Failed to fetch products", error);
+                setProducts(fallbackProducts);
             } finally {
                 setIsLoading(false);
             }

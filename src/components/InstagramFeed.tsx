@@ -11,9 +11,17 @@ export default function InstagramFeed() {
 
     return (
         <section className="relative overflow-hidden bg-white">
-            <div className="max-w-screen-2xl mx-auto px-6 py-20 text-center">
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6 block">Follow Us</span>
-                <h2 className="text-4xl font-bold tracking-tight text-black">@HAVE_STUDIO</h2>
+            <div className="max-w-screen-2xl mx-auto px-6 pb-10 text-center flex flex-col items-center">
+                <span className="text-xs md:text-sm font-bold uppercase tracking-[0.25em] text-black mb-4 block">Follow Us</span>
+                <div className="flex items-center justify-center mb-2">
+                    <Image
+                        src="/images/logo/havelogoblack.png"
+                        alt="HAVE"
+                        width={280}
+                        height={90}
+                        className="h-12 md:h-16 w-auto object-contain"
+                    />
+                </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-5 h-64 md:h-96">
                 {images.map((img, i) => (

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Truck, Headset, ShieldCheck, RotateCcw } from "lucide-react";
 
 const props = [
@@ -31,7 +32,16 @@ export default function ValueProps() {
         <section className="bg-white py-12 px-4 md:py-24 md:px-6">
             <div className="max-w-screen-2xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl font-bold tracking-tight mb-4">Why Shop with Veon</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 flex items-center justify-center gap-3.5 flex-wrap">
+                        <span>Why Shop with</span>
+                        <Image
+                            src="/images/logo/havelogoblack.png"
+                            alt="HAVE"
+                            width={220}
+                            height={72}
+                            className="h-[0.95em] w-auto object-contain inline-block"
+                        />
+                    </h2>
                     <p className="text-neutral-500 text-sm font-medium tracking-wide uppercase">Enjoy exclusive benefits designed for a seamless shopping experience</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

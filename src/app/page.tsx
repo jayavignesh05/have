@@ -19,13 +19,11 @@ import CollectionSplit from "@/components/CollectionSplit";
 
 
 import { useState, useEffect } from "react";
-import { Product } from "@/data/products";
+import { Product, products as fallbackProducts } from "@/data/products";
 import { useShop } from "@/context/ShopContext";
 
-// import { bestSellers, newIn } from "@/data/products"; // Removing static data imports
-
 export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>(fallbackProducts);
   const { setHasHomeLoaded } = useShop();
 
   useEffect(() => {
@@ -38,17 +36,25 @@ export default function Home() {
         const res = await fetch('/api/products');
         if (res.ok) {
           const data = await res.json();
-          setProducts(data);
+          if (Array.isArray(data) && data.length > 0) {
+            setProducts(data);
+          } else {
+            setProducts(fallbackProducts);
+          }
+        } else {
+          setProducts(fallbackProducts);
         }
       } catch (error) {
         console.error("Failed to fetch products", error);
+        setProducts(fallbackProducts);
       }
     }
     fetchProducts();
   }, []);
 
-  const bestSellers = products.length > 0 ? products.slice(0, 4) : [];
-  const newIn = products.length > 0 ? products.slice(4, 8) : [];
+  const safeProducts = Array.isArray(products) && products.length > 0 ? products : fallbackProducts;
+  const bestSellers = safeProducts.slice(0, 4);
+  const newIn = safeProducts.length >= 8 ? safeProducts.slice(4, 8) : safeProducts.slice(0, 4);
 
   // 1. Scroll Tracking logic
   const containerRef = useRef(null);
@@ -139,7 +145,7 @@ export default function Home() {
 
 
           <Reveal delay={0.1}>
-            <div className="py-12 md:py-24">
+            <div className="py-6 md:py-12">
               <InstagramFeed />
             </div>
           </Reveal>

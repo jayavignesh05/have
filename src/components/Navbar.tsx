@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useShop } from "@/context/ShopContext";
 import { usePathname } from "next/navigation";
@@ -44,8 +45,15 @@ export default function Navbar() {
 
                     {/* Logo - Left Aligned */}
                     <div className="flex-shrink-0">
-                        <Link href="/" className="font-sans text-xl md:text-2xl font-bold tracking-[0.2em] uppercase text-gray-900 dark:text-gray-100">
-                            HAVE
+                        <Link href="/" className="flex items-center">
+                            <Image
+                                src="/images/logo/havelogo.png"
+                                alt="HAVE Logo"
+                                width={150}
+                                height={100}
+                                className="h-7 md:h-8 w-auto object-contain"
+                                priority
+                            />
                         </Link>
                     </div>
 
